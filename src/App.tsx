@@ -10,6 +10,7 @@ import RetroAnalytics from './pages/RetroAnalytics';
 import SystemPerformance from './pages/SystemPerformance';
 import TerminalMonitor from './pages/TerminalMonitor';
 import NocConsole from './pages/NocConsole';
+import NtaTerminalMonitor from './pages/user/NtaTerminalMonitor';
 
 // Auth views
 import Landing from './pages/auth/Landing';
@@ -47,7 +48,20 @@ export const App: React.FC = () => {
           
           <Route path="packet-explorer" element={<PacketExplorer />} />
           <Route path="alerts" element={<AlertsDashboard />} />
+          <Route path="nta-terminal" element={<NtaTerminalMonitor />} />
           
+          {/* NOC Console dynamic routes */}
+          <Route path="overview" element={<NocConsole />} />
+          <Route path="nta-endpoints" element={<NocConsole />} />
+          <Route path="live-alerts" element={<NocConsole />} />
+          <Route path="alerts-dashboard" element={<NocConsole />} />
+          <Route path="keys" element={<NocConsole />} />
+          <Route path="live-traffic" element={<NocConsole />} />
+          <Route path="sessions" element={<NocConsole />} />
+          <Route path="hosts" element={<NocConsole />} />
+          <Route path="applications" element={<NocConsole />} />
+          <Route path="settings" element={<NocConsole />} />
+
           {/* Admin-only exclusive pages */}
           <Route
             path="retro-analytics"
@@ -73,11 +87,6 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-
-          {/* NOC Console dynamic routes */}
-          <Route path="live-traffic" element={<NocConsole />} />
-          <Route path="sessions" element={<NocConsole />} />
-          
           <Route
             path="flows"
             element={
@@ -111,10 +120,6 @@ export const App: React.FC = () => {
             }
           />
 
-          <Route path="hosts" element={<NocConsole />} />
-          <Route path="applications" element={<NocConsole />} />
-          <Route path="settings" element={<NocConsole />} />
-          
           {/* Catch-all route redirects back to core dashboard */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

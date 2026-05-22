@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDashboardStore } from '../store/useDashboardStore';
 import { useLiveUpdates } from '../hooks/useLiveUpdates';
-import { Globe, Settings, FileSpreadsheet, Server, Laptop, Cpu, Shield, HelpCircle, Activity } from 'lucide-react';
+import { Globe, Settings, FileSpreadsheet, Server, Laptop, Cpu, Shield, HelpCircle, Activity, Key, ShieldAlert, GitMerge, FileText } from 'lucide-react';
 import StatusBadge from '../components/StatusBadge';
 
 export const NocConsole: React.FC = () => {
@@ -17,7 +17,7 @@ export const NocConsole: React.FC = () => {
   const [packetBufferCapacity, setPacketBufferCapacity] = useState(1024);
   const [logRotationSize, setLogRotationSize] = useState(500);
 
-  // Render Host list view
+  // 1. Render Host list view
   if (pathname === '/hosts') {
     return (
       <div className="space-y-6">
@@ -59,14 +59,14 @@ export const NocConsole: React.FC = () => {
                       {!blockedIps.includes(h.ip) ? (
                         <button
                           onClick={() => blockIp(h.ip)}
-                          className="px-2 py-0.5 border border-rose-900/40 hover:border-rose-600 bg-rose-950/10 text-rose-400 rounded text-[9px] font-bold uppercase transition"
+                          className="px-2 py-0.5 border border-rose-900/40 hover:border-rose-600 bg-rose-950/10 text-rose-400 rounded text-[9px] font-bold uppercase transition cursor-pointer"
                         >
                           Ban Node
                         </button>
                       ) : (
                         <button
                           onClick={() => unblockIp(h.ip)}
-                          className="px-2 py-0.5 border border-slate-800 hover:border-cyber-blue bg-slate-950 text-slate-400 hover:text-cyber-blue rounded text-[9px] font-bold uppercase transition"
+                          className="px-2 py-0.5 border border-slate-800 hover:border-cyber-blue bg-slate-950 text-slate-400 hover:text-cyber-blue rounded text-[9px] font-bold uppercase transition cursor-pointer"
                         >
                           Release
                         </button>
@@ -82,9 +82,8 @@ export const NocConsole: React.FC = () => {
     );
   }
 
-  // Render Applications list view
+  // 2. Render Applications list view
   if (pathname === '/applications') {
-    // Map host app traffic
     const appMap: Record<string, number> = {};
     hosts.forEach(h => {
       h.applications.forEach(app => {
@@ -132,9 +131,8 @@ export const NocConsole: React.FC = () => {
     );
   }
 
-  // Render DNS Monitor view
+  // 3. Render DNS Monitor view
   if (pathname === '/dns') {
-    // Generate static dns log stream
     const dnsLogs = [
       { timestamp: new Date(Date.now() - 5000).toISOString(), query: 'api.github.com', type: 'A', status: 'SUCCESS', client: '10.0.1.12' },
       { timestamp: new Date(Date.now() - 8000).toISOString(), query: 'aws-ap-south-datacenter.net', type: 'A', status: 'SUCCESS', client: '10.0.2.10' },
@@ -193,7 +191,7 @@ export const NocConsole: React.FC = () => {
     );
   }
 
-  // Render Reports download page
+  // 4. Render Reports download page
   if (pathname === '/reports') {
     const reportList = [
       { id: 'rep-01', title: 'Network Bandwidth Performance Archive', date: '2026-05-21', size: '4.8 MB', format: 'PDF' },
@@ -219,9 +217,181 @@ export const NocConsole: React.FC = () => {
                   <h5 className="font-bold text-slate-200">{rep.title}</h5>
                   <span className="text-[10px] text-slate-500">ARCHIVED ON: {rep.date} // SIZE: {rep.size}</span>
                 </div>
-                <button className="px-3.5 py-1.5 bg-[#0a0f1d] hover:bg-slate-900 border border-slate-800 hover:border-cyber-blue text-cyber-blue font-bold rounded text-[10px] uppercase transition">
+                <button className="px-3.5 py-1.5 bg-[#0a0f1d] hover:bg-slate-900 border border-slate-800 hover:border-cyber-blue text-cyber-blue font-bold rounded text-[10px] uppercase transition cursor-pointer">
                   Download {rep.format}
                 </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 5. Active Keys Monitor (`/keys`)
+  if (pathname === '/keys') {
+    const activeKeys = [
+      { id: 'key-1', entity: 'NOC-CENTRAL-ROUTER', type: 'SSL Signature', algorithm: 'ECDSA-SHA256', expiry: '2027-12-05', status: 'VALID' },
+      { id: 'key-2', entity: 'VPN-GATEWAY-DEV', type: 'SSH Authorized Key', algorithm: 'ED25519-256', expiry: '2026-10-22', status: 'VALID' },
+      { id: 'key-3', entity: 'EXTERNAL-APIS-GATEWAY', type: 'OAuth Token Signature', algorithm: 'HMAC-SHA512', expiry: '2026-06-15', status: 'EXPIRES-SOON' }
+    ];
+
+    return (
+      <div className="space-y-6">
+        <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+          <div className="flex justify-between items-center border-b border-slate-800 pb-2.5 mb-4">
+            <h4 className="font-orbitron font-bold text-xs text-cyber-blue uppercase tracking-widest flex items-center gap-2">
+              <Key size={14} /> Active Cryptographic Keys & Signature Monitor
+            </h4>
+            <span className="font-mono text-[9px] text-slate-500">SIGNATURE AUDITS</span>
+          </div>
+
+          <div className="overflow-x-auto w-full">
+            <table className="w-full text-left border-collapse font-mono text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-900 text-slate-500 uppercase pb-2">
+                  <th className="pb-2">Node Entity</th>
+                  <th className="pb-2">Key Type</th>
+                  <th className="pb-2">Algorithm</th>
+                  <th className="pb-2">Expiration</th>
+                  <th className="pb-2 text-right">Integrity Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-900">
+                {activeKeys.map(k => (
+                  <tr key={k.id} className="hover:bg-slate-900/20 transition">
+                    <td className="py-2.5 font-bold text-slate-200">{k.entity}</td>
+                    <td className="py-2.5 text-cyber-blue">{k.type}</td>
+                    <td className="py-2.5 text-slate-400">{k.algorithm}</td>
+                    <td className="py-2.5 text-slate-400">{k.expiry}</td>
+                    <td className="py-2.5 text-right">
+                      <span className={`px-2 py-0.5 rounded text-[9px] font-bold ${
+                        k.status === 'VALID' ? 'bg-emerald-950/20 border border-emerald-800 text-emerald-400' : 'bg-yellow-950/20 border border-yellow-800 text-yellow-400'
+                      }`}>
+                        {k.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 6. Overview Dashboard (`/overview`)
+  if (pathname === '/overview') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+          <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+            <h5 className="font-orbitron font-bold text-slate-400 uppercase tracking-wider mb-2">TELEMETRY LINK STATUS</h5>
+            <div className="space-y-1.5">
+              <p>✔ Active DNS Queries Sniffer: <span className="text-emerald-400">ONLINE</span></p>
+              <p>✔ SSL Encryption Handshake: <span className="text-emerald-400">ENFORCED</span></p>
+              <p>✔ Capture Ring Buffer allocation: <span className="text-emerald-400">100% OK</span></p>
+            </div>
+          </div>
+          <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+            <h5 className="font-orbitron font-bold text-slate-400 uppercase tracking-wider mb-2">NOC SECURITY METRICS</h5>
+            <div className="space-y-1.5">
+              <p>✔ Neutralized threat streams: <span className="text-emerald-400">{blockedIps.length} Nodes</span></p>
+              <p>✔ Firewall registry rules: <span className="text-cyber-blue">ACTIVE</span></p>
+              <p>✔ Packet drop logs: <span className="text-slate-400">0.00% drops</span></p>
+            </div>
+          </div>
+          <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+            <h5 className="font-orbitron font-bold text-slate-400 uppercase tracking-wider mb-2">SYSTEM ALLOCATIONS</h5>
+            <div className="space-y-1.5">
+              <p>✔ CPU usage cores: <span className="text-cyber-purple">{metrics.cpuUsage}%</span></p>
+              <p>✔ Memory cache alloc: <span className="text-cyber-purple">{metrics.memoryUsage}%</span></p>
+              <p>✔ Disk telemetry read: <span className="text-slate-300">{metrics.diskRead} MB/s</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 7. NTA Endpoints Sniffer (`/nta-endpoints`)
+  if (pathname === '/nta-endpoints') {
+    return (
+      <div className="space-y-6">
+        <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+          <div className="flex justify-between items-center border-b border-slate-800 pb-2.5 mb-4">
+            <h4 className="font-orbitron font-bold text-xs text-cyber-blue uppercase tracking-widest flex items-center gap-2">
+              <GitMerge size={14} /> NTA Sniffed Rouge DHCP Endpoints Registry
+            </h4>
+            <span className="font-mono text-[9px] text-slate-500">ROGUE DHCP SWEEPS</span>
+          </div>
+
+          <div className="overflow-x-auto w-full">
+            <table className="w-full text-left border-collapse font-mono text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-900 text-slate-500 uppercase pb-2">
+                  <th className="pb-2">Endpoint Host</th>
+                  <th className="pb-2">MAC Signature</th>
+                  <th className="pb-2">Internal Range IP</th>
+                  <th className="pb-2 text-right">Subnet Gateway</th>
+                  <th className="pb-2 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-900">
+                <tr className="hover:bg-slate-900/20 transition">
+                  <td className="py-2.5 font-bold text-slate-200">HQ-PRINTER-ZONE-B</td>
+                  <td className="py-2.5 text-slate-400">00:1A:2B:3C:4D:5E</td>
+                  <td className="py-2.5 text-cyber-blue">192.168.10.45</td>
+                  <td className="py-2.5 text-right text-slate-500">255.255.255.0</td>
+                  <td className="py-2.5 text-center">
+                    <span className="px-2 py-0.5 rounded bg-emerald-950/20 border border-emerald-800 text-emerald-400 text-[9px] font-bold">
+                      SECURED
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-900/20 transition">
+                  <td className="py-2.5 font-bold text-rose-300">ROGUE-WIFI-CLIENT</td>
+                  <td className="py-2.5 text-slate-400">FF:FF:FF:FF:FF:FF</td>
+                  <td className="py-2.5 text-rose-400">192.168.1.254</td>
+                  <td className="py-2.5 text-right text-slate-500">255.255.255.0</td>
+                  <td className="py-2.5 text-center">
+                    <span className="px-2 py-0.5 rounded bg-rose-950/20 border border-rose-800 text-rose-400 text-[9px] font-bold animate-pulse">
+                      SUSPICIOUS
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 8. Alerts Live Stream / Realtime Alerts (`/live-alerts` & `/alerts-dashboard`)
+  if (pathname === '/live-alerts' || pathname === '/alerts-dashboard') {
+    return (
+      <div className="space-y-6">
+        <div className="cyber-glass rounded-lg border border-slate-900 p-4">
+          <div className="flex justify-between items-center border-b border-slate-800 pb-2.5 mb-4">
+            <h4 className="font-orbitron font-bold text-xs text-rose-400 uppercase tracking-widest flex items-center gap-2">
+              <ShieldAlert size={14} className="animate-pulse" /> Live Telemetry Alarm Stream
+            </h4>
+            <span className="font-mono text-[9px] text-slate-500 animate-pulse">WEBSOCKET STREAM ACTIVE</span>
+          </div>
+
+          <div className="space-y-3 font-mono text-xs">
+            {alerts.slice(0, 3).map(alert => (
+              <div key={alert.id} className="border border-slate-900 bg-slate-950/20 p-3 rounded flex items-center justify-between hover:border-slate-800 transition">
+                <div>
+                  <h5 className="font-bold text-slate-200 uppercase">{alert.category} // {alert.sourceIp}</h5>
+                  <span className="text-[10px] text-slate-500">TIMESTAMP: {alert.timestamp} // PRIORITY: {alert.severity}</span>
+                  <p className="text-slate-400 mt-1">{alert.title}</p>
+                </div>
+                <span className="px-2 py-0.5 rounded bg-rose-950/20 border border-rose-900/40 text-rose-400 text-[9px] font-bold uppercase">
+                  {alert.status}
+                </span>
               </div>
             ))}
           </div>
@@ -243,7 +413,6 @@ export const NocConsole: React.FC = () => {
           </div>
 
           <div className="space-y-4 font-mono text-xs text-slate-300">
-            {/* Setting 1 */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between text-xs">
                 <span>Threat Anomaly Threshold</span>
@@ -260,7 +429,6 @@ export const NocConsole: React.FC = () => {
               <span className="text-[9px] text-slate-500">CPU/Bandwidth anomaly spike alerts will trigger above this threshold.</span>
             </div>
 
-            {/* Setting 2 */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between text-xs">
                 <span>Packet Frame Buffer Capacity</span>
@@ -278,7 +446,6 @@ export const NocConsole: React.FC = () => {
               <span className="text-[9px] text-slate-500">Maximum packets logged in active UI stream explorer memory.</span>
             </div>
 
-            {/* Setting 3 */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between text-xs">
                 <span>Log Rotation size</span>
@@ -299,7 +466,7 @@ export const NocConsole: React.FC = () => {
             <div className="border-t border-slate-900 pt-3 flex justify-end">
               <button
                 onClick={() => alert('Security configuration synced to NOC daemon successfully.')}
-                className="px-4 py-2 bg-cyber-blue/10 border border-cyber-blue text-cyber-blue font-bold rounded text-[10px] uppercase hover:bg-cyber-blue/20 transition"
+                className="px-4 py-2 bg-cyber-blue/10 border border-cyber-blue text-cyber-blue font-bold rounded text-[10px] uppercase hover:bg-cyber-blue/20 transition cursor-pointer"
               >
                 Sync Settings
               </button>
@@ -318,7 +485,6 @@ export const NocConsole: React.FC = () => {
   return (
     <div className="space-y-6">
       
-      {/* Live active flows scroll view */}
       <div className="cyber-glass rounded-lg border border-slate-900 p-4">
         
         <div className="flex justify-between items-center border-b border-slate-800 pb-2.5 mb-4">

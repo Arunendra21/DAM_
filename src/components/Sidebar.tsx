@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
   Laptop,
   Cpu,
-  Cable,
-  Activity,
+  ShieldCheck,
   ShieldAlert,
   Flame,
   BellDot,
   Globe,
   LineChart,
-  ServerCrash,
-  Layers,
   GitMerge,
   History,
   FileBarChart2,
   Terminal,
-  Sliders,
+  ChevronDown,
+  ChevronUp,
+  LogOut,
+  Radio,
+  FileText,
+  Activity,
+  KeyRound,
+  Layers,
   ChevronLeft,
-  ChevronRight,
-  ShieldCheck,
-  LogOut
+  ChevronRight
 } from 'lucide-react';
 import { useDashboardStore } from '../store/useDashboardStore';
 import { useAuthStore } from '../store/useAuthStore';
@@ -33,7 +35,8 @@ interface MenuItem {
   icon: React.ComponentType<any>;
 }
 
-interface MenuSection {
+interface CollapsibleSection {
+  id: string;
   title: string;
   items: MenuItem[];
 }
@@ -45,85 +48,70 @@ export const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const [hoverExpanded, setHoverExpanded] = useState(false);
 
+  // Track collapsible group open states
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    telemetry: true,
+    security: true,
+    nta: true,
+    historic: true
+  });
+
+  const toggleSection = (id: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
   const handleLogoutClick = () => {
     logout();
     navigate('/landing');
   };
 
-  const isAdmin = user?.role === 'admin';
-
-  // Segregated navigation lists
-  const menuSections: MenuSection[] = isAdmin
-    ? [
-        {
-          title: 'Telemetry',
-          items: [
-            { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-            { name: 'Live Traffic', path: '/live-traffic', icon: Activity },
-            { name: 'Sessions', path: '/sessions', icon: Cable },
-            { name: 'Network Flows', path: '/flows', icon: GitMerge },
-            { name: 'Geo Map', path: '/geo-map', icon: Globe },
-          ],
-        },
-        {
-          title: 'Security',
-          items: [
-            { name: 'Threat Detection', path: '/threats', icon: Flame },
-            { name: 'Security Center', path: '/security', icon: ShieldAlert },
-            { name: 'Alerts Dashboard', path: '/alerts', icon: BellDot },
-            { name: 'DNS Monitor', path: '/dns', icon: ServerCrash },
-            { name: 'Packet Explorer', path: '/packet-explorer', icon: Layers },
-          ],
-        },
-        {
-          title: 'Analytics',
-          items: [
-            { name: 'Retro Analytics', path: '/retro-analytics', icon: History },
-            { name: 'Current Hosts', path: '/hosts', icon: Laptop },
-            { name: 'Current Applications', path: '/applications', icon: Cpu },
-            { name: 'Reports', path: '/reports', icon: FileBarChart2 },
-          ],
-        },
-        {
-          title: 'System',
-          items: [
-            { name: 'System Performance', path: '/system-performance', icon: LineChart },
-            { name: 'Terminal Monitor', path: '/terminal-monitor', icon: Terminal },
-            { name: 'Settings', path: '/settings', icon: Sliders },
-          ],
-        },
+  // Structured submenus listing the exact 17 items requested!
+  const collapsibleSections: CollapsibleSection[] = [
+    {
+      id: 'telemetry',
+      title: 'Telemetry & Hosts',
+      items: [
+        { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+        { name: 'Overview', path: '/overview', icon: Layers },
+        { name: 'Current Hosts', path: '/hosts', icon: Laptop },
+        { name: 'Current Apps', path: '/applications', icon: Cpu },
+        { name: 'NTA Endpoints', path: '/nta-endpoints', icon: GitMerge }
       ]
-    : [
-        {
-          title: 'Telemetry',
-          items: [
-            { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-            { name: 'Live Traffic', path: '/live-traffic', icon: Activity },
-            { name: 'Sessions', path: '/sessions', icon: Cable },
-            { name: 'Geo Map', path: '/geo-map', icon: Globe },
-          ],
-        },
-        {
-          title: 'Security',
-          items: [
-            { name: 'Alerts Dashboard', path: '/alerts', icon: BellDot },
-            { name: 'Packet Monitoring', path: '/packet-explorer', icon: Layers },
-          ],
-        },
-        {
-          title: 'Analytics',
-          items: [
-            { name: 'Current Hosts', path: '/hosts', icon: Laptop },
-            { name: 'Current Applications', path: '/applications', icon: Cpu },
-          ],
-        },
-        {
-          title: 'System',
-          items: [
-            { name: 'Settings', path: '/settings', icon: Sliders },
-          ],
-        },
-      ];
+    },
+    {
+      id: 'security',
+      title: 'Security & Streams',
+      items: [
+        { name: 'Alerts', path: '/alerts', icon: ShieldAlert },
+        { name: 'Alerts Dashboard', path: '/alerts-dashboard', icon: BellDot },
+        { name: 'Real Time Alerts', path: '/live-alerts', icon: Radio },
+        { name: 'Security', path: '/security', icon: Flame },
+        { name: 'Sessions', path: '/sessions', icon: Activity }
+      ]
+    },
+    {
+      id: 'nta',
+      title: 'NTA Diagnostics',
+      items: [
+        { name: 'NTA Terminal Monitor', path: '/nta-terminal', icon: Terminal },
+        { name: 'Real Time Traffic', path: '/live-traffic', icon: Radio },
+        { name: 'Geo Map', path: '/geo-map', icon: Globe },
+        { name: 'Active Keys Monitor', path: '/keys', icon: KeyRound }
+      ]
+    },
+    {
+      id: 'historic',
+      title: 'Analytics & Reports',
+      items: [
+        { name: 'System Performance', path: '/system-performance', icon: LineChart },
+        { name: 'Retro Analytics', path: '/retro-analytics', icon: History },
+        { name: 'Reports', path: '/reports', icon: FileBarChart2 }
+      ]
+    }
+  ];
 
   const effectivelyCollapsed = isCollapsed && !hoverExpanded;
 
@@ -136,9 +124,9 @@ export const Sidebar: React.FC = () => {
       onMouseLeave={() => isCollapsed && setHoverExpanded(false)}
     >
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between px-4 py-4 border-b border-slate-900/60 bg-slate-950/20 flex-shrink-0">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-slate-900/60 bg-slate-950/25 flex-shrink-0">
         <div className="flex items-center gap-2.5 overflow-hidden">
-          <div className="flex-shrink-0 w-8 h-8 rounded bg-gradient-to-tr from-cyber-purple to-cyber-blue flex items-center justify-center border border-cyber-blue/30 shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+          <div className="flex-shrink-0 w-8 h-8 rounded bg-gradient-to-tr from-cyber-purple to-cyber-blue flex items-center justify-center border border-cyber-blue/30 shadow-[0_0_10px_rgba(0,240,255,0.25)]">
             <ShieldCheck className="text-slate-100" size={18} />
           </div>
           {!effectivelyCollapsed && (
@@ -176,40 +164,77 @@ export const Sidebar: React.FC = () => {
         )}
       </div>
 
-      {/* Navigation Links */}
-      <div className="flex-grow overflow-y-auto px-2 py-3 space-y-4">
-        {menuSections.map((section) => (
-          <div key={section.title} className="space-y-1">
-            {!effectivelyCollapsed && (
-              <h5 className="font-mono text-[10px] text-slate-600 uppercase tracking-widest px-3 mb-1 select-none">
-                {section.title}
-              </h5>
-            )}
+      {/* Collapsible Nested submenus & timelines */}
+      <div className="flex-grow overflow-y-auto px-2 py-4 space-y-4 relative">
+        
+        {/* Glowing active line timeline linking indicators */}
+        {!effectivelyCollapsed && (
+          <div className="absolute left-[20px] top-6 bottom-6 w-[1px] bg-slate-900 pointer-events-none" />
+        )}
+
+        {collapsibleSections.map((section) => (
+          <div key={section.id} className="space-y-1">
             
-            {section.items.map((item) => {
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2 rounded font-mono text-xs tracking-wide transition-all group ${
-                      isActive
-                        ? 'bg-slate-900/50 text-cyber-blue border-l-2 border-cyber-blue shadow-[inset_4px_0_12px_rgba(0,240,255,0.05)] font-bold'
-                        : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/30 font-medium'
-                    }`
-                  }
+            {/* Collapsible Group Header */}
+            {!effectivelyCollapsed ? (
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="w-full flex items-center justify-between font-mono text-[10px] text-slate-500 hover:text-slate-300 uppercase tracking-widest px-3 py-1.5 rounded select-none cursor-pointer"
+              >
+                <span>{section.title}</span>
+                {openSections[section.id] ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
+              </button>
+            ) : (
+              <div className="border-b border-slate-900 my-1 mx-2" />
+            )}
+
+            {/* Submenu Item Links */}
+            <AnimatePresence initial={false}>
+              {(effectivelyCollapsed || openSections[section.id]) && (
+                <motion.div
+                  initial={effectivelyCollapsed ? undefined : { height: 0, opacity: 0 }}
+                  animate={effectivelyCollapsed ? undefined : { height: 'auto', opacity: 1 }}
+                  exit={effectivelyCollapsed ? undefined : { height: 0, opacity: 0 }}
+                  className="space-y-1 overflow-hidden"
                 >
-                  <Icon
-                    size={16}
-                    className="flex-shrink-0 group-hover:scale-110 transition duration-300"
-                  />
-                  {!effectivelyCollapsed && (
-                    <span className="truncate">{item.name}</span>
-                  )}
-                </NavLink>
-              );
-            })}
+                  {section.items.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <NavLink
+                        key={item.name}
+                        to={item.path}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 px-3 py-2 rounded font-mono text-xs tracking-wide transition-all group relative ${
+                            isActive
+                              ? 'bg-slate-900/40 text-cyber-blue border-l-2 border-cyber-blue shadow-[inset_4px_0_12px_rgba(0,240,255,0.05)] font-bold'
+                              : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/20 font-medium'
+                          }`
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            {/* Glowing timeline node dot */}
+                            {!effectivelyCollapsed && (
+                              <span className={`absolute left-[-2px] w-1.5 h-1.5 rounded-full border border-[#050914] z-10 transition duration-300 ${
+                                isActive ? 'bg-cyber-blue shadow-[0_0_8px_#00f0ff]' : 'bg-slate-800'
+                              }`} />
+                            )}
+                            <Icon
+                              size={15}
+                              className="flex-shrink-0 group-hover:scale-110 transition duration-300 ml-1.5"
+                            />
+                            {!effectivelyCollapsed && (
+                              <span className="truncate">{item.name}</span>
+                            )}
+                          </>
+                        )}
+                      </NavLink>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </div>
         ))}
       </div>
@@ -223,7 +248,7 @@ export const Sidebar: React.FC = () => {
           }`}
           title="Disconnect Session"
         >
-          <LogOut size={16} className="flex-shrink-0" />
+          <LogOut size={15} className="flex-shrink-0" />
           {!effectivelyCollapsed && <span>DISCONNECT</span>}
         </button>
       </div>
