@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-bg: #030712;
+  --color-cyber-dark: #080c16;
+  --color-cyber-card: rgba(8, 12, 22, 0.7);
+  --color-cyber-blue: #00f0ff;
+  --color-cyber-green: #39ff14;
+  --color-cyber-pink: #ff007f;
+  --color-cyber-purple: #9d4edd;
+  --color-cyber-yellow: #ffb700;
+  
+  --font-cyber: "Share Tech Mono", ui-monospace, Consolas, monospace;
+  --font-orbitron: "Orbitron", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  
+  --animate-pulse-slow: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-blink: blink 1s step-end infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.2)); }
+  50% { opacity: 0.4; filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.6)); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+body {
+  background-color: var(--color-cyber-bg);
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050814;
+}
+::-webkit-scrollbar-thumb {
+  background: #111a30;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+/* Cyber Utilities */
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-position: center;
+}
+
+.cyber-grid-bg-dense {
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 12px 12px;
+  background-position: center;
+}
+
+.cyber-glass {
+  background: var(--color-cyber-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(0, 240, 255, 0.02);
+}
+
+.cyber-glass:hover {
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.05), inset 0 0 16px rgba(0, 240, 255, 0.03);
+}
+
+.cyber-glass-glow-blue {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1), inset 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.cyber-glass-glow-pink {
+  border: 1px solid rgba(255, 0, 127, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.1), inset 0 0 15px rgba(255, 0, 127, 0.05);
+}
+
+.cyber-glass-glow-green {
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.1), inset 0 0 15px rgba(57, 255, 20, 0.05);
+}
+
+.cyber-glass-glow-yellow {
+  border: 1px solid rgba(255, 183, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 183, 0, 0.1), inset 0 0 15px rgba(255, 183, 0, 0.05);
+}
+
+/* Glow Text Utilities */
+.text-glow-blue {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+.text-glow-green {
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+.text-glow-pink {
+  text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+}
+.text-glow-yellow {
+  text-shadow: 0 0 8px rgba(255, 183, 0, 0.6);
+}
+
+/* Recharts Custom Styling override */
+.recharts-default-tooltip {
+  background-color: rgba(6, 10, 20, 0.95) !important;
+  border: 1px solid rgba(0, 240, 255, 0.3) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
+}
+
+.recharts-tooltip-label {
+  color: #00f0ff !important;
+  font-family: var(--font-cyber) !important;
+  font-weight: bold !important;
+}
+
+.recharts-tooltip-item {
+  color: #e2e8f0 !important;
+  font-family: var(--font-cyber) !important;
+}
+
+/* Disable App.tsx root styling blockages */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  max-width: none;
+  min-height: 100vh;
+}
