@@ -16,20 +16,14 @@ const navLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<string>('#features')
+  const [activeSection, setActiveSection] = useState<string | null>(null)
 
   useEffect(() => {
     // Handle hash changes
     const handleHashChange = () => {
-      const hash = window.location.hash || '#features'
-      setActiveSection(hash)
+      const hash = window.location.hash
+      setActiveSection(hash || null)
     }
-
-    // Set initial active section from URL hash
-    handleHashChange()
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange)
 
     // Detect scroll position to update active section
     const handleScroll = () => {
@@ -39,7 +33,7 @@ export function Navbar() {
           element: document.querySelector(link.href),
         }))
 
-        let current = '#features'
+        let current: string | null = null
         for (const section of sections) {
           if (section.element) {
             const rect = section.element.getBoundingClientRect()
@@ -52,7 +46,14 @@ export function Navbar() {
       }
     }
 
+    // Set initial active section from URL hash or scroll position
+    handleHashChange()
+    handleScroll()
+
+    // Listen for hash and scroll changes
+    window.addEventListener('hashchange', handleHashChange)
     window.addEventListener('scroll', handleScroll)
+
     return () => {
       window.removeEventListener('hashchange', handleHashChange)
       window.removeEventListener('scroll', handleScroll)
