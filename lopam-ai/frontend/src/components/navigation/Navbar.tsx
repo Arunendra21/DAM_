@@ -61,7 +61,7 @@ export function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-black/40 border-b border-border dark:border-surface-border"
+      className="navbar-header fixed top-0 left-0 right-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -77,7 +77,7 @@ export function Navbar() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
               <span className="text-white font-bold text-lg">L</span>
             </div>
-            <span className="font-bold text-xl hidden sm:inline text-slate-900 dark:text-white">Lopam AI</span>
+            <span className="font-bold text-xl hidden sm:inline navbar-text">Lopam AI</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -118,10 +118,10 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-primary/10"
+              className="md:hidden p-2 rounded-lg navbar-menu-button"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              {isOpen ? <X size={20} className="navbar-text" /> : <Menu size={20} className="navbar-text" />}
             </button>
           </div>
         </div>

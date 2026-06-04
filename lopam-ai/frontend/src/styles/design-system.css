@@ -752,7 +752,7 @@ html.light tr:hover {
 
 /* Navigation Link - Inactive State (Dark Theme) */
 .nav-link-inactive {
-  color: rgba(255, 255, 255, 0.65);
+  color: #94A3B8;
   font-weight: 500;
   transition: color var(--transition-fast);
 }
@@ -806,25 +806,48 @@ html.light .mobile-nav-link-active {
   background: rgba(0, 184, 148, 0.1);
 }
 
-/* Navbar Styling */
-header.navbar,
-header nav {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
-}
+/* =============================================
+   NAVBAR STYLING
+   ============================================= */
 
-header.navbar {
-  /* Uses design system variables */
-  background: var(--bg-card);
+/* Dark Theme Navbar (Default) */
+.navbar-header {
+  background: rgba(2, 6, 23, 0.8);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Light theme navbar override */
-html.light header.navbar,
-html.light header nav {
+.navbar-text {
+  color: #FFFFFF;
+}
+
+.navbar-menu-button {
+  color: rgba(255, 255, 255, 0.65);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.navbar-menu-button:hover {
+  background: rgba(22, 224, 181, 0.1);
+  color: #16E0B5;
+}
+
+/* Light Theme Navbar */
+html.light .navbar-header {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+html.light .navbar-text {
+  color: #0F172A;
+}
+
+html.light .navbar-menu-button {
+  color: #64748B;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+html.light .navbar-menu-button:hover {
+  background: rgba(0, 184, 148, 0.1);
+  color: #00B894;
 }
