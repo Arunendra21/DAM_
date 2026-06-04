@@ -17,14 +17,15 @@ interface ParticleAssemblyProps {
   progress: number
 }
 
+const PARTICLE_COUNT = 60
+
 export function ParticleAssembly({ progress }: ParticleAssemblyProps) {
   const [particles, setParticles] = useState<Particle[]>([])
 
   useEffect(() => {
     const newParticles: Particle[] = []
-    const particleCount = 60
 
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
       const angle = (Math.random() * Math.PI * 2)
       const distance = Math.random() * 300 + 100
 
@@ -35,7 +36,7 @@ export function ParticleAssembly({ progress }: ParticleAssemblyProps) {
         finalX: Math.cos(angle) * (60 + Math.random() * 80),
         finalY: Math.sin(angle) * (60 + Math.random() * 80),
         size: Math.random() * 3 + 1,
-        delay: (i / particleCount) * 1.5,
+        delay: (i / PARTICLE_COUNT) * 1.5,
       })
     }
 
@@ -81,7 +82,7 @@ export function ParticleAssembly({ progress }: ParticleAssemblyProps) {
             <stop offset="100%" stopColor="rgba(34, 197, 238, 0.2)" />
           </linearGradient>
         </defs>
-        {particles.slice(0, Math.floor(particleCount * (progress / 100))).map((particle, idx) => {
+        {particles.slice(0, Math.floor(PARTICLE_COUNT * (progress / 100))).map((particle, idx) => {
           if (idx === 0) return null
           const nextParticle = particles[idx - 1]
           return (
