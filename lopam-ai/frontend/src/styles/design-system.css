@@ -738,3 +738,93 @@ html.light td {
 html.light tr:hover {
   background: rgba(0, 184, 148, 0.03);
 }
+
+/* =============================================
+   NAVIGATION ACTIVE STATES
+   ============================================= */
+
+/* Navigation Link - Active State (Both Themes) */
+.nav-link-active {
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+/* Navigation Link - Inactive State (Dark Theme) */
+.nav-link-inactive {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.nav-link-inactive:hover {
+  color: var(--color-primary);
+}
+
+/* Navigation Link - Inactive State (Light Theme) */
+html.light .nav-link-inactive {
+  color: #64748B;
+}
+
+html.light .nav-link-inactive:hover {
+  color: var(--color-primary);
+}
+
+/* Mobile Navigation - Active State (Both Themes) */
+.mobile-nav-link-active {
+  color: var(--color-primary);
+  font-weight: 600;
+  background: rgba(22, 224, 181, 0.1);
+  transition: all var(--transition-fast);
+}
+
+/* Mobile Navigation - Inactive State (Dark Theme) */
+.mobile-nav-link-inactive {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-link-inactive:hover {
+  color: var(--color-primary);
+  background: rgba(22, 224, 181, 0.05);
+}
+
+/* Mobile Navigation - Inactive State (Light Theme) */
+html.light .mobile-nav-link-inactive {
+  color: #0F172A;
+}
+
+html.light .mobile-nav-link-inactive:hover {
+  color: var(--color-primary);
+  background: rgba(0, 184, 148, 0.05);
+}
+
+/* Mobile Navigation - Active State (Light Theme) */
+html.light .mobile-nav-link-active {
+  color: var(--color-primary);
+  background: rgba(0, 184, 148, 0.1);
+}
+
+/* Navbar Styling */
+header.navbar,
+header nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
+}
+
+header.navbar {
+  /* Uses design system variables */
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+/* Light theme navbar override */
+html.light header.navbar,
+html.light header nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
+}
