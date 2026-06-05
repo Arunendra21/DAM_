@@ -10,7 +10,6 @@ import { Navbar } from '@/components/dashboard/enterprise/Navbar'
 import { KPICards } from '@/components/dashboard/enterprise/KPICards'
 import { DatabaseDistributionWidget } from '@/components/dashboard/enterprise/widgets/DatabaseDistributionWidget'
 import { DatabaseGrowthTrend } from '@/components/dashboard/enterprise/widgets/DatabaseGrowthTrend'
-import { DatabaseInventoryTable } from '@/components/dashboard/enterprise/widgets/DatabaseInventoryTable'
 import { QueryMonitoring } from '@/components/dashboard/enterprise/widgets/QueryMonitoring'
 import { TopDatabasesByLoad } from '@/components/dashboard/enterprise/widgets/TopDatabasesByLoad'
 import { AccessRequestOverview } from '@/components/dashboard/enterprise/widgets/AccessRequestOverview'
@@ -18,13 +17,7 @@ import { RecentActivities } from '@/components/dashboard/enterprise/widgets/Rece
 import { SecurityAlertCenter } from '@/components/dashboard/enterprise/widgets/SecurityAlertCenter'
 import { DatabaseHealthStatus } from '@/components/dashboard/enterprise/widgets/DatabaseHealthStatus'
 import { StorageConsumption } from '@/components/dashboard/enterprise/widgets/StorageConsumption'
-import { DataGrowthChart } from '@/components/dashboard/enterprise/widgets/DataGrowthChart'
 import { SystemHealthPanel } from '@/components/dashboard/enterprise/widgets/SystemHealthPanel'
-import { ComplianceOverview } from '@/components/dashboard/enterprise/widgets/ComplianceOverview'
-import { RiskAssessment } from '@/components/dashboard/enterprise/widgets/RiskAssessment'
-import { BackupStatus } from '@/components/dashboard/enterprise/widgets/BackupStatus'
-import { DataClassification } from '@/components/dashboard/enterprise/widgets/DataClassification'
-import { GeographicalDistribution } from '@/components/dashboard/enterprise/widgets/GeographicalDistribution'
 import { enterpriseDashboardData } from '@/lib/dashboard/enterprise-data'
 
 export default function EnterpriseDashboard() {
@@ -131,17 +124,6 @@ export default function EnterpriseDashboard() {
                 </div>
               </div>
 
-              {/* Second Row */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                {/* Data Growth */}
-                <div className="lg:col-span-2">
-                  <DataGrowthChart data={enterpriseDashboardData.dataGrowth} />
-                </div>
-
-                {/* Risk Assessment */}
-                <RiskAssessment data={enterpriseDashboardData.riskAssessment} />
-              </div>
-
               {/* Activities and Alerts Row */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                 {/* Recent Activities */}
@@ -151,19 +133,6 @@ export default function EnterpriseDashboard() {
 
                 {/* Security Alerts */}
                 <SecurityAlertCenter data={enterpriseDashboardData.securityAlerts} />
-              </div>
-
-              {/* Enterprise Features Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <ComplianceOverview data={enterpriseDashboardData.compliance} />
-                <BackupStatus data={enterpriseDashboardData.backupStatus} />
-                <DataClassification data={enterpriseDashboardData.dataClassification} />
-                <GeographicalDistribution data={enterpriseDashboardData.geographicalData} />
-              </div>
-
-              {/* Database Inventory */}
-              <div className="mb-8">
-                <DatabaseInventoryTable data={enterpriseDashboardData.databaseInventory} />
               </div>
 
               {/* Footer Spacing */}
