@@ -34,7 +34,7 @@ export function QueryActivityChart({ data }: QueryActivityChartProps) {
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: number) => `${value.toFixed(1)}M`}
+            formatter={(value: unknown) => typeof value === 'number' ? `${value.toFixed(1)}M` : String(value)}
           />
           <Legend wrapperStyle={{ color: '#d1d5db' }} />
           <Line

@@ -34,7 +34,7 @@ export function FailedLoginsChart({ data }: FailedLoginsChartProps) {
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: number) => `${value} attempts`}
+            formatter={(value: unknown) => `${value} attempts`}
             labelFormatter={(label) => `${label}`}
           />
           <Legend wrapperStyle={{ color: '#d1d5db' }} />

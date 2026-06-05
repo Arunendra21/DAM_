@@ -32,7 +32,7 @@ export function StorageChart({ data }: StorageChartProps) {
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: number) => `${value.toFixed(1)} TB`}
+            formatter={(value: unknown) => typeof value === 'number' ? `${value.toFixed(1)} TB` : String(value)}
           />
           <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 0, 0]} animationDuration={1000} />
         </BarChart>
