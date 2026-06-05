@@ -49,9 +49,12 @@ export function DatabaseDistributionWidget({ data }: DatabaseDistributionWidgetP
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: number) => {
-              const percentage = ((value / total) * 100).toFixed(1)
-              return [`${value} (${percentage}%)`, 'Count']
+            formatter={(value: unknown) => {
+              if (typeof value === 'number') {
+                const percentage = ((value / total) * 100).toFixed(1)
+                return `${value} (${percentage}%)`
+              }
+              return String(value)
             }}
           />
         </PieChart>
