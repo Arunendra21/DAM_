@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"app/auth/forgot-password/page.tsx -> @/lib/api/auth-flow":{"id":72662,"files":[]},"components/sections/Hero/index.tsx -> ./HeroThreeCanvas":{"id":56690,"files":["static/chunks/b536a0f1.990ddfca3eb9b857.js","static/chunks/bd904a5c.69b460917c92212b.js","static/chunks/6690.652d435b460ccf85.js"]}}';
