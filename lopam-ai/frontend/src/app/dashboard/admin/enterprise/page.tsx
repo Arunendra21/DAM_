@@ -23,6 +23,7 @@ import { enterpriseDashboardData } from '@/lib/dashboard/enterprise-data'
 export default function EnterpriseDashboard() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
+  // Fixed: Removed missing widget imports
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [isDarkMode] = useState(true)
 
