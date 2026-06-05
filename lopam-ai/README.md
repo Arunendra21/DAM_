@@ -4,12 +4,32 @@ Professional, enterprise-grade DAM platform with organized frontend and backend 
 
 ---
 
-## 🚀 Quick Start
+## 🌐 Live Demo
+
+| Service | URL |
+|---------|-----|
+| **Frontend (App)** | https://dam-six-lake.vercel.app |
+| **Backend (API)** | https://lopam-dam-backend.onrender.com |
+
+> ⏱️ The backend runs on a free tier and may take ~30–50 seconds to wake up on the first request after being idle.
+
+### 🔑 Login
+
+```
+Email:    admin@lopam.ai
+Password: Admin@123456
+```
+
+Open the app → **"Get Started" → "Admin Portal"** → log in with the credentials above → view the dashboard at `/dashboard/admin/enterprise`.
+
+---
+
+## 🚀 Local Development
 
 ### **Start Everything** (Recommended)
 
 ```bash
-cd /home/lenovo/Me/Dciphers/lopam-ai
+cd lopam-ai
 bash start-dev.sh
 ```
 
@@ -51,34 +71,6 @@ lopam-ai/
 
 ---
 
-## 🔌 Services
-
-| Service | URL |
-|---------|-----|
-| Frontend | http://localhost:3000 |
-| Backend | http://localhost:8080 |
-
----
-
-## 🔑 Login
-
-```
-Email:    admin@lopam.ai
-Password: Admin@123456
-```
-
----
-
-## 🧪 Test
-
-1. Run: `bash start-dev.sh`
-2. Open: http://localhost:3000
-3. Click: "Get Started" → "Admin Portal"
-4. Login with credentials above
-5. View dashboard at: /dashboard/admin/enterprise
-
----
-
 ## 📚 Docs
 
 - **PROJECT_STRUCTURE.md** - Complete setup guide
@@ -93,14 +85,3 @@ Password: Admin@123456
 ✅ Complete authentication
 ✅ Real sample data
 ✅ Enterprise design
-
----
-
-## 🚀 Go!
-
-```bash
-bash start-dev.sh
-```
-
-Then visit http://localhost:3000
-
