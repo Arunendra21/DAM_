@@ -1,0 +1,33 @@
+databases:
+  - name: lopam-dam-db
+    databaseName: lopam_dam
+    plan: free
+
+services:
+  - type: web
+    name: lopam-dam-backend
+    runtime: node
+    plan: free
+    rootDir: lopam-ai/backend
+    buildCommand: npm install && npx prisma generate && npx prisma db push --accept-data-loss && node prisma/seed.js
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lopam-dam-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: 15m
+      - key: JWT_REFRESH_EXPIRATION
+        value: 7d
+      # Set this manually in the Render dashboard to your exact Vercel URL
+      # e.g. https://your-app.vercel.app  (no trailing slash)
+      - key: CORS_ORIGIN
+        sync: false
