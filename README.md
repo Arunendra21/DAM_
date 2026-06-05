@@ -1,72 +1,349 @@
-# Network Monitoring System (NMS) - Frontend
+# 🛡️ DCiphers DAM (Database Access Management)
 
-This is the frontend application for the Network Monitoring System. It provides a comprehensive dashboard to monitor network performance, device status, and real-time analytics.
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-Frontend-black?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Node.js-Backend-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Cybersecurity-Platform-red?style=for-the-badge" />
+</p>
 
-## 🚀 Live Demo
+<p align="center">
+  <strong>Secure • Monitor • Manage • Protect</strong>
+</p>
 
-**[View Deployed Application](https://network-monitoring-system-six.vercel.app/)**
+---
 
-## 🛠️ Technologies Used
+## 📖 Overview
 
-This project is built with modern web technologies:
+**DCiphers DAM (Database Access Management)** is a cybersecurity-focused platform that provides centralized control, monitoring, and management of multiple databases through a single dashboard.
 
-*   **[React 19](https://react.dev/)** - UI Library
-*   **[TypeScript](https://www.typescriptlang.org/)** - Static typing for JavaScript
-*   **[Vite](https://vitejs.dev/)** - Fast frontend build tool
-*   **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-*   **[Zustand](https://zustand-demo.pmnd.rs/)** - Lightweight state management
-*   **[Recharts](https://recharts.org/)** - Composable charting library
-*   **[Framer Motion](https://www.framer.com/motion/)** - Animation library
-*   **[Lucide React](https://lucide.dev/)** - Beautiful and consistent icons
-*   **[React Router](https://reactrouter.com/)** - Client-side routing
+The platform enables administrators and users to securely manage database resources, monitor performance metrics, track security incidents, manage access requests, and visualize critical database insights in real time.
 
-## 📦 Getting Started
+Designed with a modern cybersecurity-inspired interface, DCiphers DAM combines security, scalability, and usability into one powerful management solution.
 
-To get a local copy up and running, follow these simple steps.
+---
 
-### Prerequisites
+## ✨ Features
 
-Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+### 🔐 Authentication & Access Control
+- Secure Login & Registration
+- JWT-based Authentication
+- Protected Routes
+- Role-Based Access Control (RBAC)
+- Admin and User Portals
+- Session Management
 
-### Installation
+### 📊 Interactive Dashboard
+- Real-Time System Monitoring
+- Database Health Overview
+- Performance Analytics
+- Interactive Graphs & Charts
+- Activity Tracking
+- Resource Monitoring
 
-1.  Clone the repository (or download the source).
-2.  Navigate to the frontend directory:
-    ```bash
-    cd "NMS Frontend"
-    ```
-3.  Install the dependencies:
-    ```bash
-    npm install
-    ```
+### 🗄️ Multi-Database Management
+- Centralized Database Management
+- PostgreSQL Database Monitoring
+- Database Status Tracking
+- Storage Utilization Analysis
+- Query Monitoring
+- Connection Management
 
-### Running the Development Server
+### 🛡️ Security Center
+- Threat Monitoring
+- Security Alerts Dashboard
+- Suspicious Activity Detection
+- Risk Analysis
+- Security Event Tracking
+- Audit Logging
 
-Start the Vite development server:
+### 👥 User & Access Management
+- Access Request Workflow
+- User Management
+- Role Assignment
+- Permission Controls
+- Request Approval / Rejection System
+- Access History Tracking
+
+### 📈 Analytics & Reporting
+- Database Usage Analytics
+- Query Execution Statistics
+- Performance Trends
+- Security Reports
+- Historical Monitoring Data
+- Resource Consumption Insights
+
+### 🔔 Notification System
+- Real-Time Alerts
+- Security Notifications
+- Database Health Notifications
+- Critical Event Tracking
+
+### 🎨 Modern UI/UX
+- Cybersecurity-Themed Design
+- Responsive Layout
+- Dark Theme Interface
+- Smooth Animations
+- Framer Motion Integration
+- Interactive Dashboard Components
+
+### ⚡ Enhanced User Experience
+- Custom Animated Loading Screen
+- Seamless Dashboard Transition
+- Optimized Performance
+- Modern Navigation System
+
+---
+
+## 🏗️ Admin Dashboard Modules
+
+The Admin Portal provides complete control over:
+
+- Dashboard Overview
+- User Management
+- Database Monitoring
+- Security Alerts
+- Query Monitoring
+- Threat Detection
+- Access Requests
+- Analytics & Reports
+- Audit Logs
+- Role Management
+- Database Connections
+
+---
+
+## 👤 User Dashboard Modules
+
+Users can:
+
+- View Database Information
+- Monitor Database Activity
+- Submit Access Requests
+- Track Resource Usage
+- View Security Notifications
+- Access Query Insights
+- Manage Profile Settings
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- Next.js
+- React.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Shadcn UI
+- Lucide Icons
+
+### Backend
+- Node.js
+- Express.js
+- REST APIs
+- JWT Authentication
+
+### Database
+- PostgreSQL
+
+### Security
+- Role-Based Access Control
+- Secure Authentication
+- API Protection
+- Session Security
+
+---
+
+## 📂 Project Structure
+
+```bash
+DCiphers-DAM/
+│
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   ├── lib/
+│   └── public/
+│
+├── backend/
+│   ├── controllers/
+│   ├── routes/
+│   ├── middleware/
+│   ├── models/
+│   └── config/
+│
+├── database/
+│
+├── docs/
+│
+└── README.md
+```
+
+---
+
+## 📊 Dashboard Highlights
+
+### System Overview
+- Active Databases
+- Connected Users
+- Active Sessions
+- Security Score
+- Query Statistics
+- Storage Utilization
+
+### Security Center
+- Threat Analysis
+- Alert Monitoring
+- Incident Tracking
+- Security Trends
+
+### Database Operations
+- Database Availability
+- Query Performance
+- Resource Usage
+- Connection Health
+
+---
+
+## 🎯 Use Cases
+
+### Enterprise Organizations
+Manage multiple databases securely from a centralized platform.
+
+### Database Administrators
+Monitor database performance, availability, and resource utilization.
+
+### Security Teams
+Track threats, monitor alerts, and investigate suspicious activities.
+
+### DevOps Teams
+Maintain visibility across database infrastructure and operations.
+
+---
+
+## 🚀 Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/your-username/DCiphers-DAM.git
+```
+
+### Navigate to Project
+
+```bash
+cd DCiphers-DAM
+```
+
+### Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### Install Backend Dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+PORT=5000
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=your_database
+DB_USER=your_username
+DB_PASSWORD=your_password
+
+JWT_SECRET=your_secret_key
+```
+
+### Run Backend
 
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173` (or the port specified by Vite).
-
-### Building for Production
-
-To create an optimized production build:
+### Run Frontend
 
 ```bash
-npm run build
+npm run dev
 ```
 
-The compiled assets will be placed in the `dist` directory. To preview the production build locally:
+Open:
 
 ```bash
-npm run preview
+http://localhost:3000
 ```
 
-## 📝 Scripts
+---
 
-*   `npm run dev` - Starts the development server.
-*   `npm run build` - Type-checks and builds the app for production.
-*   `npm run lint` - Runs ESLint to check for code quality issues.
-*   `npm run preview` - Previews the built production app locally.
+## 🔮 Future Scope
+
+- AI-Powered Threat Detection
+- Automated Database Backups
+- Multi-Cloud Database Support
+- Compliance Reporting
+- Predictive Analytics
+- Kubernetes Deployment
+- Advanced Audit Trails
+- Database Migration Utilities
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Added new feature"
+```
+
+4. Push to GitHub
+
+```bash
+git push origin feature/new-feature
+```
+
+5. Open a Pull Request
+
+---
+
+## 👨‍💻 Author
+
+### Arunendra Tripathi
+
+- CSE (AI & Data Science), IIIT Manipur
+- Open Source Contributor
+- Full Stack Developer
+- Cybersecurity & Cloud Enthusiast
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+<p align="center">
+  <strong>DCiphers DAM</strong><br>
+  A Modern Database Access Management Platform
+</p>
