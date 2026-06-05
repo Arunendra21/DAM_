@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/sections/Hero/index.tsx -> ./HeroThreeCanvas\":{\"id\":\"components/sections/Hero/index.tsx -> ./HeroThreeCanvas\",\"files\":[\"static/chunks/_app-pages-browser_src_components_sections_Hero_HeroThreeCanvas_tsx.js\"]}}"

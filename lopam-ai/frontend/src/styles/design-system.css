@@ -1,42 +1,36 @@
 /* =============================================
    DESIGN SYSTEM - DAM PLATFORM
    Premium Cybersecurity Aesthetic
-   Dark & Light Theme Support
-   ============================================= */
-
-/* =============================================
-   DARK THEME (DEFAULT)
    ============================================= */
 
 :root {
-  /* Primary Colors - Dark Theme */
+  /* Primary Colors */
   --color-primary: #16E0B5;
   --color-primary-light: #00FFC3;
   --color-accent-1: #00D9FF;
   --color-accent-2: #36E4DA;
 
-  /* Backgrounds - Dark Theme */
-  --bg-base: #020617;
-  --bg-secondary: #031028;
+  /* Backgrounds */
+  --bg-dark: #020617;
+  --bg-darker: #031028;
   --bg-card: rgba(7, 16, 34, 0.85);
   --bg-card-hover: rgba(7, 16, 34, 0.95);
 
-  /* Text - Dark Theme */
+  /* Text */
   --text-primary: #FFFFFF;
   --text-secondary: rgba(255, 255, 255, 0.75);
   --text-muted: rgba(255, 255, 255, 0.55);
 
-  /* Borders & Glow - Dark Theme */
+  /* Borders & Glow */
   --border-primary: rgba(22, 224, 181, 0.15);
   --border-hover: rgba(22, 224, 181, 0.3);
   --glow-primary: rgba(22, 224, 181, 0.25);
   --glow-hover: rgba(22, 224, 181, 0.4);
 
-  /* Shadows - Dark Theme */
+  /* Shadows */
   --shadow-glow: 0 0 20px rgba(22, 224, 181, 0.08);
   --shadow-glow-hover: 0 0 35px rgba(22, 224, 181, 0.2);
   --shadow-inset: inset 0 0 20px rgba(22, 224, 181, 0.02);
-  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -45,57 +39,13 @@
 }
 
 /* =============================================
-   LIGHT THEME
-   ============================================= */
-
-html.light {
-  /* Primary Colors - Light Theme */
-  --color-primary: #00B894;
-  --color-primary-light: #00D2A8;
-  --color-accent-1: #0096D9;
-  --color-accent-2: #00B8E6;
-
-  /* Backgrounds - Light Theme */
-  --bg-base: #FFFFFF;
-  --bg-secondary: #F7FAFC;
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --bg-card-hover: rgba(255, 255, 255, 0.85);
-
-  /* Text - Light Theme */
-  --text-primary: #0F172A;
-  --text-secondary: #1E293B;
-  --text-muted: #475569;
-
-  /* Borders & Glow - Light Theme */
-  --border-primary: rgba(0, 150, 255, 0.08);
-  --border-hover: rgba(0, 150, 255, 0.15);
-  --glow-primary: rgba(0, 184, 148, 0.08);
-  --glow-hover: rgba(0, 184, 148, 0.15);
-
-  /* Shadows - Light Theme */
-  --shadow-glow: 0 2px 8px rgba(0, 150, 255, 0.06);
-  --shadow-glow-hover: 0 8px 24px rgba(0, 150, 255, 0.12);
-  --shadow-inset: inset 0 0 20px rgba(0, 184, 148, 0.02);
-  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
-}
-
-/* =============================================
    GLOBAL BACKGROUND
    ============================================= */
 
 body {
-  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-secondary) 50%, var(--bg-base) 100%);
+  background: linear-gradient(180deg, #020617 0%, #031028 50%, #020617 100%);
   background-attachment: fixed;
   color: var(--text-primary);
-}
-
-/* Light theme background with premium effects */
-html.light body {
-  background:
-    radial-gradient(ellipse at 100% 0%, rgba(0, 150, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(ellipse at 0% 100%, rgba(0, 184, 148, 0.08) 0%, transparent 40%),
-    linear-gradient(180deg, #FFFFFF 0%, #F7FAFC 50%, #F0F4F8 100%);
-  background-attachment: fixed;
 }
 
 /* =============================================
@@ -114,20 +64,6 @@ html.light body {
   box-shadow: var(--shadow-glow-hover), var(--shadow-inset);
 }
 
-/* Light theme glass enhancement */
-html.light .glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 150, 255, 0.12);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-}
-
-html.light .glass:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 150, 255, 0.18);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-}
-
 /* =============================================
    TYPOGRAPHY
    ============================================= */
@@ -137,7 +73,6 @@ h1 {
   font-weight: 800;
   letter-spacing: -0.5px;
   line-height: 1.2;
-  color: var(--text-primary);
 }
 
 h2 {
@@ -145,7 +80,6 @@ h2 {
   font-weight: 700;
   letter-spacing: -0.25px;
   line-height: 1.3;
-  color: var(--text-primary);
 }
 
 h3 {
@@ -153,20 +87,17 @@ h3 {
   font-weight: 600;
   letter-spacing: 0px;
   line-height: 1.4;
-  color: var(--text-primary);
 }
 
 .text-metric {
   font-size: 48px;
   font-weight: 800;
   letter-spacing: -1px;
-  color: var(--text-primary);
 }
 
 .text-metric-sm {
   font-size: 36px;
   font-weight: 700;
-  color: var(--text-primary);
 }
 
 .text-secondary {
@@ -249,12 +180,6 @@ h3 {
   animation: float 6s ease-in-out infinite;
 }
 
-/* Light theme particles */
-html.light .particle {
-  background: #00B894;
-  opacity: 0.15;
-}
-
 /* =============================================
    GLOW TEXT EFFECT
    ============================================= */
@@ -262,11 +187,6 @@ html.light .particle {
 .glow-text {
   color: var(--color-primary);
   text-shadow: 0 0 20px rgba(22, 224, 181, 0.3);
-}
-
-html.light .glow-text {
-  color: #00B894;
-  text-shadow: 0 0 20px rgba(0, 184, 148, 0.15);
 }
 
 /* =============================================
@@ -291,8 +211,7 @@ html.light .glow-text {
   transition: background-color var(--transition-fast),
     border-color var(--transition-fast),
     box-shadow var(--transition-smooth),
-    transform var(--transition-smooth),
-    color var(--transition-fast);
+    transform var(--transition-smooth);
 }
 
 /* =============================================
@@ -338,210 +257,6 @@ select:focus {
   box-shadow: 0 0 20px rgba(22, 224, 181, 0.2);
 }
 
-html.light input,
-html.light textarea,
-html.light select {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 150, 255, 0.15);
-  color: #0F172A;
-  backdrop-filter: blur(16px);
-}
-
-html.light input:focus,
-html.light textarea:focus,
-html.light select:focus {
-  border-color: #00B894;
-  box-shadow: 0 0 20px rgba(0, 184, 148, 0.2);
-}
-
-/* =============================================
-   BUTTON STYLING
-   ============================================= */
-
-/* Primary Button - Dark Theme */
-.btn-primary {
-  background: linear-gradient(135deg, #16E0B5 0%, #00FFC3 100%);
-  color: #020617;
-  font-weight: 700;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all var(--transition-smooth);
-  box-shadow: 0 4px 15px rgba(22, 224, 181, 0.2);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(22, 224, 181, 0.35);
-}
-
-/* Primary Button - Light Theme */
-html.light .btn-primary {
-  background: linear-gradient(135deg, #00B894 0%, #00D2A8 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.25);
-}
-
-html.light .btn-primary:hover {
-  box-shadow: 0 8px 25px rgba(0, 184, 148, 0.35);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid var(--border-hover);
-  font-weight: 600;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all var(--transition-smooth);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-card);
-  border-color: var(--color-primary);
-}
-
-html.light .btn-secondary {
-  background: rgba(255, 255, 255, 0.5);
-  color: #0F172A;
-  border: 1.5px solid rgba(0, 150, 255, 0.2);
-  backdrop-filter: blur(10px);
-}
-
-html.light .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: #00B894;
-  box-shadow: 0 4px 12px rgba(0, 184, 148, 0.15);
-}
-
-/* =============================================
-   BADGE & PILL STYLING
-   ============================================= */
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  color: var(--color-primary);
-}
-
-html.light .badge {
-  background: rgba(0, 184, 148, 0.1);
-  border: 1px solid rgba(0, 184, 148, 0.2);
-  color: #00B894;
-}
-
-/* =============================================
-   CARD STYLING
-   ============================================= */
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: 12px;
-  padding: 24px;
-  backdrop-filter: blur(16px);
-  box-shadow: var(--shadow-glow);
-  transition: all var(--transition-smooth);
-}
-
-.card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-glow-hover);
-  transform: translateY(-4px);
-}
-
-html.light .card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 150, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-}
-
-html.light .card:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 150, 255, 0.2);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-}
-
-/* =============================================
-   HERO PANEL STYLING
-   ============================================= */
-
-html.light .hero-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 150, 255, 0.12);
-  border-radius: 16px;
-  padding: 48px;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
-}
-
-/* =============================================
-   STAT CARD STYLING
-   ============================================= */
-
-html.light .stat-card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 150, 255, 0.08);
-  backdrop-filter: blur(16px);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
-  transition: all var(--transition-smooth);
-}
-
-html.light .stat-card:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 150, 255, 0.15);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-  transform: translateY(-4px);
-}
-
-html.light .stat-card .stat-value {
-  color: #00B894;
-  font-weight: 800;
-}
-
-html.light .stat-card .stat-label {
-  color: #475569;
-  font-size: 14px;
-}
-
-/* =============================================
-   FEATURE SECTION STYLING
-   ============================================= */
-
-html.light .feature-section {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(247, 250, 252, 0.8) 100%);
-}
-
-/* =============================================
-   FOOTER STYLING
-   ============================================= */
-
-html.light footer {
-  background: rgba(255, 255, 255, 0.8);
-  border-top: 1px solid rgba(0, 150, 255, 0.08);
-  color: #0F172A;
-}
-
-html.light footer a {
-  color: #00B894;
-}
-
-html.light footer a:hover {
-  color: #009370;
-}
-
 /* =============================================
    RESPONSIVE IMPROVEMENTS
    ============================================= */
@@ -562,292 +277,4 @@ html.light footer a:hover {
   .text-metric-sm {
     font-size: 28px;
   }
-
-  .card,
-  html.light .card {
-    padding: 16px;
-  }
-
-  html.light .hero-panel {
-    padding: 24px;
-  }
-}
-
-/* =============================================
-   FLOATING GLOW ORB EFFECT (Light Theme)
-   ============================================= */
-
-html.light .glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.08;
-  pointer-events: none;
-}
-
-html.light .glow-orb-1 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, #0096D9 0%, transparent 70%);
-  top: -150px;
-  right: -150px;
-}
-
-html.light .glow-orb-2 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, #00B894 0%, transparent 70%);
-  bottom: -125px;
-  left: -125px;
-}
-
-/* =============================================
-   ACCESSIBILITY & CONTRAST
-   ============================================= */
-
-html.light a {
-  color: #00B894;
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-html.light a:hover {
-  color: #009370;
-}
-
-html.light strong {
-  color: #0F172A;
-  font-weight: 700;
-}
-
-html.light em {
-  color: #1E293B;
-}
-
-/* =============================================
-   CODE & PRE BLOCKS (Light Theme)
-   ============================================= */
-
-html.light code,
-html.light pre {
-  background: rgba(15, 23, 42, 0.05);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  color: #0F172A;
-}
-
-html.light code {
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-html.light pre {
-  padding: 16px;
-  border-radius: 8px;
-  overflow-x: auto;
-}
-
-/* =============================================
-   ANIMATION ENHANCEMENTS
-   ============================================= */
-
-@keyframes light-glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 184, 148, 0.08), inset 0 0 20px rgba(0, 184, 148, 0.02);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(0, 184, 148, 0.15), inset 0 0 20px rgba(0, 184, 148, 0.02);
-  }
-}
-
-html.light .glow-animate {
-  animation: light-glow-pulse 3s ease-in-out infinite;
-}
-
-/* =============================================
-   NAVBAR & NAVIGATION (Light Theme)
-   ============================================= */
-
-html.light .navbar,
-html.light nav {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
-}
-
-html.light .navbar a,
-html.light nav a {
-  color: #0F172A;
-  transition: color var(--transition-fast);
-}
-
-html.light .navbar a:hover,
-html.light nav a:hover {
-  color: #00B894;
-}
-
-/* =============================================
-   TOGGLE / SWITCH (Light Theme)
-   ============================================= */
-
-html.light .toggle-switch {
-  background: rgba(0, 150, 255, 0.1);
-  border: 1px solid rgba(0, 150, 255, 0.15);
-}
-
-html.light .toggle-switch.active {
-  background: #00B894;
-  border-color: #00B894;
-}
-
-/* =============================================
-   MODAL & OVERLAY (Light Theme)
-   ============================================= */
-
-html.light .modal {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 150, 255, 0.1);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
-}
-
-html.light .modal-overlay {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(8px);
-}
-
-/* =============================================
-   TABLE STYLING (Light Theme)
-   ============================================= */
-
-html.light table {
-  color: #0F172A;
-}
-
-html.light th {
-  background: rgba(0, 150, 255, 0.05);
-  color: #0F172A;
-  font-weight: 700;
-  border-bottom: 2px solid rgba(0, 150, 255, 0.1);
-}
-
-html.light td {
-  border-bottom: 1px solid rgba(0, 150, 255, 0.05);
-  color: #1E293B;
-}
-
-html.light tr:hover {
-  background: rgba(0, 184, 148, 0.03);
-}
-
-/* =============================================
-   NAVIGATION ACTIVE STATES
-   ============================================= */
-
-/* Navigation Link - Active State (Both Themes) */
-.nav-link-active {
-  color: var(--color-primary);
-  font-weight: 600;
-  transition: color var(--transition-fast);
-}
-
-/* Navigation Link - Inactive State (Dark Theme) */
-.nav-link-inactive {
-  color: #94A3B8;
-  font-weight: 500;
-  transition: color var(--transition-fast);
-}
-
-.nav-link-inactive:hover {
-  color: var(--color-primary);
-}
-
-/* Navigation Link - Inactive State (Light Theme) */
-html.light .nav-link-inactive {
-  color: #64748B;
-}
-
-html.light .nav-link-inactive:hover {
-  color: var(--color-primary);
-}
-
-/* Mobile Navigation - Active State (Both Themes) */
-.mobile-nav-link-active {
-  color: var(--color-primary);
-  font-weight: 600;
-  background: rgba(22, 224, 181, 0.1);
-  transition: all var(--transition-fast);
-}
-
-/* Mobile Navigation - Inactive State (Dark Theme) */
-.mobile-nav-link-inactive {
-  color: rgba(255, 255, 255, 0.65);
-  font-weight: 500;
-  transition: all var(--transition-fast);
-}
-
-.mobile-nav-link-inactive:hover {
-  color: var(--color-primary);
-  background: rgba(22, 224, 181, 0.05);
-}
-
-/* Mobile Navigation - Inactive State (Light Theme) */
-html.light .mobile-nav-link-inactive {
-  color: #0F172A;
-}
-
-html.light .mobile-nav-link-inactive:hover {
-  color: var(--color-primary);
-  background: rgba(0, 184, 148, 0.05);
-}
-
-/* Mobile Navigation - Active State (Light Theme) */
-html.light .mobile-nav-link-active {
-  color: var(--color-primary);
-  background: rgba(0, 184, 148, 0.1);
-}
-
-/* =============================================
-   NAVBAR STYLING
-   ============================================= */
-
-/* Dark Theme Navbar (Default) */
-.navbar-header {
-  background: rgba(2, 6, 23, 0.8);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.navbar-text {
-  color: #FFFFFF;
-}
-
-.navbar-menu-button {
-  color: rgba(255, 255, 255, 0.65);
-  transition: color var(--transition-fast), background-color var(--transition-fast);
-}
-
-.navbar-menu-button:hover {
-  background: rgba(22, 224, 181, 0.1);
-  color: #16E0B5;
-}
-
-/* Light Theme Navbar */
-html.light .navbar-header {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-}
-
-html.light .navbar-text {
-  color: #0F172A;
-}
-
-html.light .navbar-menu-button {
-  color: #64748B;
-  transition: color var(--transition-fast), background-color var(--transition-fast);
-}
-
-html.light .navbar-menu-button:hover {
-  background: rgba(0, 184, 148, 0.1);
-  color: #00B894;
 }

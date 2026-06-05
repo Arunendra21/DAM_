@@ -15,7 +15,7 @@ export function CustomCursor() {
   const [isEnabled, setIsEnabled] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
-  const [isDark, setIsDark] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   const cursorRef = useRef<HTMLDivElement>(null)
   const followerRef = useRef<HTMLDivElement>(null)
@@ -36,12 +36,6 @@ export function CustomCursor() {
     if (window.matchMedia('(pointer:coarse)').matches) return true
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
     return false
-  }
-
-  // Check if dark mode
-  const checkDarkMode = () => {
-    if (typeof document === 'undefined') return false
-    return document.documentElement.classList.contains('dark')
   }
 
   // Perform animation loop with requestAnimationFrame
@@ -122,18 +116,8 @@ export function CustomCursor() {
     stateRef.current.clickPulse = 1
   }
 
-  // Watch for theme changes
   useEffect(() => {
-    const checkTheme = () => {
-      setIsDark(checkDarkMode())
-    }
-
-    checkTheme()
-
-    const observer = new MutationObserver(checkTheme)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-
-    return () => observer.disconnect()
+    setIsMounted(true)
   }, [])
 
   useEffect(() => {
@@ -177,7 +161,7 @@ export function CustomCursor() {
     }
   }, [])
 
-  if (!isEnabled) {
+  if (!isEnabled || !isMounted) {
     return null
   }
 
@@ -186,11 +170,10 @@ export function CustomCursor() {
       {/* Main Cursor */}
       <div
         ref={cursorRef}
-        className={`pointer-events-none fixed top-0 left-0 transition-opacity duration-300 ${
+        className={`pointer-events-none fixed top-0 left-0 z-[999999] transition-opacity duration-300 ${
           isActive ? 'opacity-100' : 'opacity-0'
         } ${isHovering ? 'brightness-150' : 'brightness-100'}`}
         style={{
-          zIndex: 999999,
           width: '24px',
           height: '24px',
           willChange: 'transform',
@@ -204,9 +187,7 @@ export function CustomCursor() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: isDark
-              ? 'drop-shadow(0 0 10px rgba(0, 255, 136, 0.8))'
-              : 'drop-shadow(0 0 8px rgba(0, 180, 100, 0.6))',
+            filter: 'drop-shadow(0 0 10px rgba(0, 255, 136, 0.8))',
             transform: 'scale(var(--pulse-scale))',
             transformOrigin: 'center',
           }}
@@ -216,7 +197,7 @@ export function CustomCursor() {
             cx="12"
             cy="12"
             r="10"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="1.5"
             opacity="0.8"
           />
@@ -226,7 +207,7 @@ export function CustomCursor() {
             cx="12"
             cy="12"
             r="7"
-            stroke={isDark ? '#00FFDD' : '#00A8CC'}
+            stroke="#00FFDD"
             strokeWidth="0.8"
             opacity="0.6"
           />
@@ -236,13 +217,13 @@ export function CustomCursor() {
             cx="12"
             cy="12"
             r="4"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.5"
             opacity="0.4"
           />
 
           {/* Center Dot */}
-          <circle cx="12" cy="12" r="2" fill={isDark ? '#00FF88' : '#00B464'} />
+          <circle cx="12" cy="12" r="2" fill="#00FF88" />
 
           {/* Targeting Crosshairs */}
           <line
@@ -250,7 +231,7 @@ export function CustomCursor() {
             y1="1"
             x2="12"
             y2="4"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="1"
             opacity="0.9"
           />
@@ -259,7 +240,7 @@ export function CustomCursor() {
             y1="20"
             x2="12"
             y2="23"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="1"
             opacity="0.9"
           />
@@ -268,7 +249,7 @@ export function CustomCursor() {
             y1="12"
             x2="4"
             y2="12"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="1"
             opacity="0.9"
           />
@@ -277,7 +258,7 @@ export function CustomCursor() {
             y1="12"
             x2="23"
             y2="12"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="1"
             opacity="0.9"
           />
@@ -285,28 +266,27 @@ export function CustomCursor() {
           {/* Security Shield Indicator - subtle */}
           <path
             d="M12 4L8 6V11C8 14.5 12 17 12 17C12 17 16 14.5 16 11V6L12 4Z"
-            stroke={isDark ? '#00FFDD' : '#00A8CC'}
+            stroke="#00FFDD"
             strokeWidth="0.7"
             fill="none"
             opacity="0.5"
           />
 
           {/* Accent dots */}
-          <circle cx="12" cy="3" r="0.5" fill={isDark ? '#00FF88' : '#00B464'} opacity="0.7" />
-          <circle cx="12" cy="21" r="0.5" fill={isDark ? '#00FF88' : '#00B464'} opacity="0.7" />
-          <circle cx="3" cy="12" r="0.5" fill={isDark ? '#00FF88' : '#00B464'} opacity="0.7" />
-          <circle cx="21" cy="12" r="0.5" fill={isDark ? '#00FF88' : '#00B464'} opacity="0.7" />
+          <circle cx="12" cy="3" r="0.5" fill="#00FF88" opacity="0.7" />
+          <circle cx="12" cy="21" r="0.5" fill="#00FF88" opacity="0.7" />
+          <circle cx="3" cy="12" r="0.5" fill="#00FF88" opacity="0.7" />
+          <circle cx="21" cy="12" r="0.5" fill="#00FF88" opacity="0.7" />
         </svg>
       </div>
 
       {/* Follower Ring - Larger Outer Ring */}
       <div
         ref={followerRef}
-        className={`pointer-events-none fixed top-0 left-0 transition-opacity duration-500 ${
+        className={`pointer-events-none fixed top-0 left-0 z-[999998] transition-opacity duration-500 ${
           isActive ? 'opacity-100' : 'opacity-0'
         } ${isHovering ? 'brightness-200' : 'brightness-100'}`}
         style={{
-          zIndex: 999998,
           width: '40px',
           height: '40px',
           willChange: 'transform',
@@ -319,9 +299,7 @@ export function CustomCursor() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: isDark
-              ? 'drop-shadow(0 0 16px rgba(0, 255, 221, 0.5))'
-              : 'drop-shadow(0 0 10px rgba(0, 168, 204, 0.4))',
+            filter: 'drop-shadow(0 0 16px rgba(0, 255, 221, 0.5))',
             animation: 'spin-slow 6s linear infinite',
           }}
         >
@@ -330,7 +308,7 @@ export function CustomCursor() {
             cx="20"
             cy="20"
             r="18"
-            stroke={isDark ? '#00FFDD' : '#00A8CC'}
+            stroke="#00FFDD"
             strokeWidth="0.8"
             opacity="0.5"
           />
@@ -341,7 +319,7 @@ export function CustomCursor() {
             y1="2"
             x2="20"
             y2="8"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -350,7 +328,7 @@ export function CustomCursor() {
             y1="5.36"
             x2="31.21"
             y2="8.79"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -359,7 +337,7 @@ export function CustomCursor() {
             y1="20"
             x2="32"
             y2="20"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -368,7 +346,7 @@ export function CustomCursor() {
             y1="34.64"
             x2="31.21"
             y2="31.21"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -377,7 +355,7 @@ export function CustomCursor() {
             y1="38"
             x2="20"
             y2="32"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -386,7 +364,7 @@ export function CustomCursor() {
             y1="34.64"
             x2="8.79"
             y2="31.21"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -395,7 +373,7 @@ export function CustomCursor() {
             y1="20"
             x2="8"
             y2="20"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
@@ -404,23 +382,12 @@ export function CustomCursor() {
             y1="5.36"
             x2="8.79"
             y2="8.79"
-            stroke={isDark ? '#00FF88' : '#00B464'}
+            stroke="#00FF88"
             strokeWidth="0.6"
             opacity="0.7"
           />
         </svg>
       </div>
-    </>
-  )
-
-  // Render cursor to document.body using Portal for maximum z-index priority
-  if (typeof document === 'undefined') {
-    return null
-  }
-
-  return (
-    <>
-      {createPortal(cursorContent, document.body)}
 
       {/* Styles */}
       <style jsx global>{`
@@ -464,4 +431,6 @@ export function CustomCursor() {
       `}</style>
     </>
   )
+
+  return createPortal(cursorContent, document.body)
 }

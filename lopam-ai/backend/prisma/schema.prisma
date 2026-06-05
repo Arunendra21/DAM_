@@ -1,0 +1,623 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// ENUM TYPES
+// ============================================
+
+enum RoleType {
+  SUPER_ADMIN
+  SECURITY_ADMIN
+  DBA
+  AUDITOR
+  USER
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  REVOKED
+  EXPIRED
+  MODIFIED
+}
+
+enum AccessLevel {
+  READ_ONLY
+  READ_WRITE
+  ADMIN
+  PRIVILEGED
+}
+
+enum DatabaseType {
+  MYSQL
+  POSTGRESQL
+  ORACLE
+  SQL_SERVER
+  MONGODB
+}
+
+enum CredentialType {
+  PASSWORD
+  API_KEY
+  CERTIFICATE
+  SSH_KEY
+}
+
+enum AuditEventType {
+  LOGIN
+  LOGOUT
+  ACCESS_APPROVED
+  ACCESS_REJECTED
+  ACCESS_REVOKED
+  PASSWORD_CHANGED
+  MFA_ENABLED
+  MFA_DISABLED
+  USER_CREATED
+  USER_DELETED
+  USER_SUSPENDED
+  CREDENTIAL_CHECKED_OUT
+  CREDENTIAL_CHECKED_IN
+  DATABASE_ADDED
+  DATABASE_MODIFIED
+  DATABASE_DELETED
+  PERMISSION_GRANTED
+  PERMISSION_REVOKED
+}
+
+enum SecurityAlertSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum SecurityAlertStatus {
+  ACTIVE
+  INVESTIGATING
+  RESOLVED
+  FALSE_POSITIVE
+}
+
+enum NotificationType {
+  ACCESS_APPROVED
+  ACCESS_REJECTED
+  NEW_REQUEST
+  PASSWORD_EXPIRATION
+  SECURITY_ALERT
+  USER_CREATED
+  ACCESS_REVOKED
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  BOTH
+}
+
+// ============================================
+// USER MANAGEMENT
+// ============================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String?   @unique
+  passwordHash  String
+  firstName     String?
+  lastName      String?
+  phone         String?
+
+  // MFA
+  mfaEnabled    Boolean   @default(false)
+  mfaSecret     String?
+
+  // Account Status
+  status        String    @default("active")
+  lastLogin     DateTime?
+  loginAttempts Int       @default(0)
+  lockUntil     DateTime?
+
+  // Relationships
+  createdDatabases  Database[]
+  accessRequests    AccessRequest[]
+  approvals         Approval[]
+  credentialCheckouts CredentialCheckout[]
+  auditLogs         AuditLog[]
+  notifications     Notification[]
+  securityEvents    SecurityEvent[]
+  sessions          Session[]
+  userRoles         UserRole[]
+  passwordResets    PasswordReset[]
+
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model UserRole {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role      @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId    String
+  assignedAt DateTime  @default(now())
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        RoleType     @unique
+  description String?
+  permissions RolePermission[]
+  users       UserRole[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([name])
+}
+
+model Permission {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  description String?
+  resource  String
+  action    String
+  roles     RolePermission[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([resource, action])
+  @@index([resource])
+}
+
+model RolePermission {
+  id           String     @id @default(cuid())
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId       String
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  permissionId String
+  createdAt    DateTime   @default(now())
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+}
+
+// ============================================
+// SESSION MANAGEMENT
+// ============================================
+
+model Session {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshToken  String    @unique
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// ============================================
+// OTP & PASSWORD RESET
+// ============================================
+
+model OtpVerification {
+  id            String    @id @default(cuid())
+  email         String
+  otp           String    @unique
+  type          String    // password_reset, email_verification
+  expiresAt     DateTime
+  attempts      Int       @default(0)
+  verified      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  @@index([email])
+  @@index([expiresAt])
+}
+
+model PasswordReset {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token         String    @unique
+  expiresAt     DateTime
+  isUsed        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// ============================================
+// DATABASE INVENTORY
+// ============================================
+
+model Database {
+  id              String    @id @default(cuid())
+  name            String
+  description     String?
+  type            DatabaseType
+  host            String
+  port            Int
+  username        String
+  passwordHash    String?
+  database        String
+  connectionString String?
+
+  environment     String
+  owner           String?
+  businessOwner   String?
+  dataClassification String?
+
+  isActive        Boolean   @default(true)
+  lastConnected   DateTime?
+  connectionStatus String  @default("unknown")
+
+  requiresMFA     Boolean   @default(false)
+  encryptedConnection Boolean @default(true)
+
+  createdById     String
+  createdBy       User      @relation(fields: [createdById], references: [id])
+  accessRequests  AccessRequest[]
+  credentials     CredentialVault[]
+  auditLogs       AuditLog[]
+  securityEvents  SecurityEvent[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  @@index([type])
+  @@index([environment])
+  @@index([createdById])
+  @@index([createdAt])
+}
+
+// ============================================
+// ACCESS MANAGEMENT
+// ============================================
+
+model AccessRequest {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  databaseId      String
+  database        Database  @relation(fields: [databaseId], references: [id], onDelete: Cascade)
+
+  accessLevel     AccessLevel @default(READ_ONLY)
+  reason          String
+  businessJustification String?
+  temporaryAccess Boolean    @default(false)
+  startDate       DateTime?
+  endDate         DateTime?
+
+  status          RequestStatus @default(PENDING)
+  requestedAt     DateTime   @default(now())
+  approvedAt      DateTime?
+  rejectedAt      DateTime?
+  expiresAt       DateTime?
+
+  approvals       Approval[]
+
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([databaseId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Approval {
+  id              String    @id @default(cuid())
+  requestId       String
+  request         AccessRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  approverId      String
+  approver        User      @relation(fields: [approverId], references: [id])
+
+  action          String
+  comments        String?
+  approvedAt      DateTime?
+
+  createdAt       DateTime  @default(now())
+
+  @@index([requestId])
+  @@index([approverId])
+  @@index([createdAt])
+}
+
+// ============================================
+// CREDENTIAL MANAGEMENT
+// ============================================
+
+model CredentialVault {
+  id              String    @id @default(cuid())
+  databaseId      String
+  database        Database  @relation(fields: [databaseId], references: [id], onDelete: Cascade)
+
+  type            CredentialType
+  username        String
+  password        String?
+  apiKey          String?
+  certificate     String?
+  sshKey          String?
+  metadata        Json?
+
+  allowedUsers    String[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  rotatedAt       DateTime?
+  expiresAt       DateTime?
+
+  checkouts       CredentialCheckout[]
+
+  @@index([databaseId])
+  @@index([expiresAt])
+}
+
+model CredentialCheckout {
+  id              String    @id @default(cuid())
+  credentialId    String
+  credential      CredentialVault @relation(fields: [credentialId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User      @relation(fields: [userId], references: [id])
+
+  checkedOutAt    DateTime  @default(now())
+  checkedInAt     DateTime?
+  purpose         String?
+  ipAddress       String?
+  userAgent       String?
+
+  expiresAt       DateTime?
+
+  @@index([credentialId])
+  @@index([userId])
+  @@index([checkedOutAt])
+}
+
+// ============================================
+// AUDIT & LOGGING
+// ============================================
+
+model AuditLog {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id])
+  databaseId      String?
+  database        Database? @relation(fields: [databaseId], references: [id])
+
+  eventType       AuditEventType
+  action          String
+  description     String?
+
+  ipAddress       String?
+  userAgent       String?
+  sessionId       String?
+
+  queryType       String?
+  query           String?
+  queryStatus     String?
+  queryDuration   Int?
+  rowsAffected    Int?
+
+  createdAt       DateTime  @default(now())
+
+  @@index([userId])
+  @@index([databaseId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+// ============================================
+// SECURITY & MONITORING
+// ============================================
+
+model SecurityEvent {
+  id              String    @id @default(cuid())
+  userId          String?
+  user            User?     @relation(fields: [userId], references: [id])
+  databaseId      String?
+  database        Database? @relation(fields: [databaseId], references: [id])
+
+  eventType       String
+  description     String
+  severity        SecurityAlertSeverity
+  status          SecurityAlertStatus @default(ACTIVE)
+
+  riskScore       Int       @default(0)
+  mitigationSteps String?
+
+  ipAddress       String?
+  userAgent       String?
+
+  detectedAt      DateTime  @default(now())
+  investigatedAt  DateTime?
+  resolvedAt      DateTime?
+
+  @@index([userId])
+  @@index([databaseId])
+  @@index([severity])
+  @@index([status])
+  @@index([detectedAt])
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
+
+model Notification {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type            NotificationType
+  title           String
+  message         String
+  channel         NotificationChannel @default(BOTH)
+
+  read            Boolean   @default(false)
+  readAt          DateTime?
+
+  relatedEntityId String?
+  metadata        Json?
+
+  createdAt       DateTime  @default(now())
+  sentAt          DateTime?
+
+  @@index([userId])
+  @@index([read])
+  @@index([createdAt])
+}
+
+// ============================================
+// REPORTS
+// ============================================
+
+model Report {
+  id              String    @id @default(cuid())
+  title           String
+  type            String
+  description     String?
+
+  startDate       DateTime
+  endDate         DateTime
+  filters         Json?
+
+  data            Json
+  summary         String?
+
+  exportFormat    String
+  fileUrl         String?
+
+  generatedAt     DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ============================================
+// COMPLIANCE & POLICIES
+// ============================================
+
+model CompliancePolicy {
+  id              String    @id @default(cuid())
+  name            String    @unique
+  description     String?
+  rules           Json
+  isActive        Boolean   @default(true)
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// ============================================
+// WEBSITE RELATED (from original schema)
+// ============================================
+
+model ContactSubmission {
+  id              String    @id @default(cuid())
+  name            String
+  email           String
+  company         String?
+  phone           String?
+  subject         String
+  message         String
+  inquiryType     String?
+  status          String    @default("pending")
+  assignedToId    String?
+  createdAt       DateTime  @default(now())
+  respondedAt     DateTime?
+  updatedAt       DateTime  @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+model DemoRequest {
+  id              String    @id @default(cuid())
+  userId          String?
+  name            String
+  email           String
+  company         String?
+  databaseType    String?
+  numDatabases    Int?
+  preferredDate   DateTime?
+  preferredTime   String?
+  notes           String?
+  status          String    @default("pending")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+model BlogPost {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  content         String
+  excerpt         String?
+  authorId        String?
+  category        String?
+  tags            String[]
+  featuredImageUrl String?
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  viewCount       Int       @default(0)
+
+  @@index([slug])
+  @@index([publishedAt])
+}
+
+model CaseStudy {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  industry        String?
+  challenge       String?
+  solution        String?
+  results         String?
+  clientName      String?
+  clientLogoUrl   String?
+  featuredImageUrl String?
+  metrics         Json?
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+model NewsletterSubscriber {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  subscribed      Boolean   @default(true)
+  subscriptionDate DateTime  @default(now())
+  unsubscribeDate DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([email])
+}

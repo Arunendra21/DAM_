@@ -1,68 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { ThemeSwitcher } from './ThemeSwitcher'
 
 const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Dashboard', href: '#dashboard' },
-  { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
 ]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<string | null>(null)
-
-  useEffect(() => {
-    // Handle hash changes
-    const handleHashChange = () => {
-      const hash = window.location.hash
-      setActiveSection(hash || null)
-    }
-
-    // Detect scroll position to update active section
-    const handleScroll = () => {
-      if (!window.location.hash) {
-        const sections = navLinks.map((link) => ({
-          href: link.href,
-          element: document.querySelector(link.href),
-        }))
-
-        let current: string | null = null
-        for (const section of sections) {
-          if (section.element) {
-            const rect = section.element.getBoundingClientRect()
-            if (rect.top <= 100) {
-              current = section.href
-            }
-          }
-        }
-        setActiveSection(current)
-      }
-    }
-
-    // Set initial active section from URL hash or scroll position
-    handleHashChange()
-    handleScroll()
-
-    // Listen for hash and scroll changes
-    window.addEventListener('hashchange', handleHashChange)
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange)
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   return (
     <motion.header
-      className="navbar-header fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-black/40 border-b border-border dark:border-surface-border"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -78,38 +33,25 @@ export function Navbar() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
               <span className="text-white font-bold text-lg">L</span>
             </div>
-            <span className="font-bold text-xl hidden sm:inline navbar-text">Lopam AI</span>
+            <span className="font-bold text-xl hidden sm:inline text-slate-900 dark:text-white">Lopam AI</span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href
-              return (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  className={`transition-colors ${isActive ? 'font-semibold' : 'font-medium'} ${
-                    isActive
-                      ? 'nav-link-active'
-                      : 'nav-link-inactive'
-                  }`}
-                  style={
-                    isActive
-                      ? { color: 'var(--color-primary)' }
-                      : {}
-                  }
-                  whileHover={!isActive ? {} : {}}
-                >
-                  {link.label}
-                </motion.a>
-              )
-            })}
+            {navLinks.map((link) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                className="text-slate-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+                whileHover={{ color: '#10B981' }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
           </nav>
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            <ThemeSwitcher />
             <Link href="/auth">
               <Button size="sm" className="hidden sm:flex">
                 Get Started
@@ -119,10 +61,10 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg navbar-menu-button"
+              className="md:hidden p-2 rounded-lg hover:bg-primary/10"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={20} className="navbar-text" /> : <Menu size={20} className="navbar-text" />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -133,30 +75,18 @@ export function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mt-4 flex flex-col gap-3 pb-4 mobile-nav"
+            className="md:hidden mt-4 flex flex-col gap-3 pb-4"
           >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  style={
-                    isActive
-                      ? { color: 'var(--color-primary)' }
-                      : {}
-                  }
-                  className={`px-4 py-2 rounded-lg transition-colors ${isActive ? 'font-semibold' : 'font-medium'} ${
-                    isActive
-                      ? 'mobile-nav-link-active'
-                      : 'mobile-nav-link-inactive'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              )
-            })}
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="px-4 py-2 rounded-lg hover:bg-primary/10 transition-colors text-slate-950 dark:text-white font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
             <Link href="/auth" className="w-full" onClick={() => setIsOpen(false)}>
               <Button className="w-full">Get Started</Button>
             </Link>

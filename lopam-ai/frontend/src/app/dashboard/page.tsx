@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Loader, LogOut, Home } from 'lucide-react'
 import { apiRequest, getAccessToken, removeTokens } from '@/lib/api/client'
-import { CustomCursor } from '@/components/cursors/CustomCursor'
 
 interface User {
   id: string
@@ -103,7 +102,6 @@ export default function DashboardPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-900 to-slate-950 flex items-center justify-center px-4">
-        <CustomCursor />
         <motion.div
           className="text-center max-w-md"
           initial={{ opacity: 0, scale: 0.9 }}
