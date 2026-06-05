@@ -44,14 +44,8 @@ export function DatabaseDistributionChart({ data }: DatabaseDistributionChartPro
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: unknown) => {
-              if (typeof value === 'number') {
-                const percentage = ((value / total) * 100).toFixed(1)
-                return `${value} (${percentage}%)`
-              }
-              return String(value)
-            } as unknown as (value: unknown, name: unknown, entry: unknown, index: number, payload: unknown) => React.ReactNode}
           />
+
           <Legend wrapperStyle={{ color: '#d1d5db' }} />
         </PieChart>
       </ResponsiveContainer>
