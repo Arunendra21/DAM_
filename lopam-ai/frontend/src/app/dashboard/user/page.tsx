@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Plus, Search, Eye, Download } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userDamDashboardData } from '@/lib/dashboard/user-dam-data'
 import UserTopStats from '@/components/dashboard/user/UserTopStats'

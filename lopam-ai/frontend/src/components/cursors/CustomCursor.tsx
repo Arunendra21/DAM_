@@ -38,84 +38,6 @@ export function CustomCursor() {
     return false
   }
 
-  // Perform animation loop with requestAnimationFrame
-  const updateCursor = () => {
-    const cursor = cursorRef.current
-    const follower = followerRef.current
-    const state = stateRef.current
-
-    if (!cursor || !follower) {
-      animationFrameRef.current = requestAnimationFrame(updateCursor)
-      return
-    }
-
-    // Smooth easing for follower
-    const easeX = (state.targetX - state.x) * 0.15
-    const easeY = (state.targetY - state.y) * 0.15
-
-    state.x += easeX
-    state.y += easeY
-
-    // Update main cursor with GPU-accelerated transform
-    cursor.style.transform = `translate3d(${state.targetX - 12}px, ${state.targetY - 12}px, 0)`
-
-    // Update follower with eased position
-    follower.style.transform = `translate3d(${state.x - 20}px, ${state.y - 20}px, 0)`
-
-    // Update click pulse
-    if (state.clickPulse > 0) {
-      state.clickPulse -= 0.08
-      const pulseScale = 1 + state.clickPulse * 0.3
-      cursor.style.setProperty('--pulse-scale', pulseScale.toString())
-    }
-
-    animationFrameRef.current = requestAnimationFrame(updateCursor)
-  }
-
-  // Handle mouse move
-  const handleMouseMove = (e: MouseEvent) => {
-    stateRef.current.targetX = e.clientX
-    stateRef.current.targetY = e.clientY
-    if (!isActive) setIsActive(true)
-  }
-
-  // Handle mouse leave
-  const handleMouseLeave = () => {
-    setIsActive(false)
-  }
-
-  // Handle hover on interactive elements
-  const handleElementHover = (e: Event) => {
-    const mouseEvent = e as PointerEvent
-    const target = mouseEvent.target as HTMLElement
-
-    // Safely check if target is an Element before using closest
-    if (!target || typeof target.closest !== 'function') {
-      return
-    }
-
-    const isInteractive =
-      target.closest('button') ||
-      target.closest('a') ||
-      target.closest('[role="button"]') ||
-      target.closest('[role="link"]') ||
-      target.closest('input') ||
-      target.closest('textarea') ||
-      target.closest('select') ||
-      target.closest('[data-interactive]')
-
-    if (isInteractive && mouseEvent.type === 'pointerenter') {
-      setIsHovering(true)
-    } else if (mouseEvent.type === 'pointerleave') {
-      setIsHovering(false)
-    }
-  }
-
-  // Handle click animation
-  const handleClick = () => {
-    stateRef.current.clickPulse = 1
-  }
-
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -127,6 +49,84 @@ export function CustomCursor() {
 
     if (disabled) {
       return
+    }
+
+    // Perform animation loop with requestAnimationFrame
+    const updateCursor = () => {
+      const cursor = cursorRef.current
+      const follower = followerRef.current
+      const state = stateRef.current
+
+      if (!cursor || !follower) {
+        animationFrameRef.current = requestAnimationFrame(updateCursor)
+        return
+      }
+
+      // Smooth easing for follower
+      const easeX = (state.targetX - state.x) * 0.15
+      const easeY = (state.targetY - state.y) * 0.15
+
+      state.x += easeX
+      state.y += easeY
+
+      // Update main cursor with GPU-accelerated transform
+      cursor.style.transform = `translate3d(${state.targetX - 12}px, ${state.targetY - 12}px, 0)`
+
+      // Update follower with eased position
+      follower.style.transform = `translate3d(${state.x - 20}px, ${state.y - 20}px, 0)`
+
+      // Update click pulse
+      if (state.clickPulse > 0) {
+        state.clickPulse -= 0.08
+        const pulseScale = 1 + state.clickPulse * 0.3
+        cursor.style.setProperty('--pulse-scale', pulseScale.toString())
+      }
+
+      animationFrameRef.current = requestAnimationFrame(updateCursor)
+    }
+
+    // Handle mouse move
+    const handleMouseMove = (e: MouseEvent) => {
+      stateRef.current.targetX = e.clientX
+      stateRef.current.targetY = e.clientY
+      if (!isActive) setIsActive(true)
+    }
+
+    // Handle mouse leave
+    const handleMouseLeave = () => {
+      setIsActive(false)
+    }
+
+    // Handle hover on interactive elements
+    const handleElementHover = (e: Event) => {
+      const mouseEvent = e as PointerEvent
+      const target = mouseEvent.target as HTMLElement
+
+      // Safely check if target is an Element before using closest
+      if (!target || typeof target.closest !== 'function') {
+        return
+      }
+
+      const isInteractive =
+        target.closest('button') ||
+        target.closest('a') ||
+        target.closest('[role="button"]') ||
+        target.closest('[role="link"]') ||
+        target.closest('input') ||
+        target.closest('textarea') ||
+        target.closest('select') ||
+        target.closest('[data-interactive]')
+
+      if (isInteractive && mouseEvent.type === 'pointerenter') {
+        setIsHovering(true)
+      } else if (mouseEvent.type === 'pointerleave') {
+        setIsHovering(false)
+      }
+    }
+
+    // Handle click animation
+    const handleClick = () => {
+      stateRef.current.clickPulse = 1
     }
 
     // Start animation loop
@@ -159,7 +159,7 @@ export function CustomCursor() {
       document.removeEventListener('click', handleClick)
       document.documentElement.style.cursor = 'auto'
     }
-  }, [])
+  }, [isActive, isHovering])
 
   if (!isEnabled || !isMounted) {
     return null

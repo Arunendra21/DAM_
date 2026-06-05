@@ -15,9 +15,6 @@ interface SecurityCenterProps {
 }
 
 export default function SecurityCenter({ data, expanded = false }: SecurityCenterProps) {
-  const scoreColor =
-    data.score >= 80 ? 'from-green-500 to-cyan-500' : data.score >= 60 ? 'from-yellow-500 to-orange-500' : 'from-red-500 to-orange-500'
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

@@ -53,7 +53,7 @@ export default function CaseStudiesPage() {
                         {caseStudy.title}
                       </h3>
                       <p className="text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-                        {caseStudy.summary}
+                        {caseStudy.title}
                       </p>
                     </div>
 

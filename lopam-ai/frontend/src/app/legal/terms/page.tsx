@@ -28,7 +28,7 @@ export default function TermsPage() {
                 1. Agreement to Terms
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                These Terms of Service ("Terms") constitute a legal agreement between you and Lopam AI ("Company") regarding your use of our website, services, and products. By accessing or using Lopam AI, you agree to be bound by these Terms.
+                These Terms of Service (&quot;Terms&quot;) constitute a legal agreement between you and Lopam AI (&quot;Company&quot;) regarding your use of our website, services, and products. By accessing or using Lopam AI, you agree to be bound by these Terms.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
@@ -49,7 +49,7 @@ export default function TermsPage() {
                 3. Pricing and Billing
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                Pricing for our services is as stated on our Pricing page. We reserve the right to modify prices with 30 days' notice. Subscriptions automatically renew unless cancelled. You are responsible for all charges incurred under your account.
+                Pricing for our services is as stated on our Pricing page. We reserve the right to modify prices with 30 days&apos; notice. Subscriptions automatically renew unless cancelled. You are responsible for all charges incurred under your account.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
@@ -77,7 +77,7 @@ export default function TermsPage() {
                 7. Disclaimers
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                Our services are provided "as is" without warranties of any kind, either express or implied. We do not warrant that our services will be uninterrupted, error-free, or secure. While we strive to detect threats and provide accurate compliance reporting, we do not guarantee 100% threat detection or compliance certification.
+                Our services are provided &quot;as is&quot; without warranties of any kind, either express or implied. We do not warrant that our services will be uninterrupted, error-free, or secure. While we strive to detect threats and provide accurate compliance reporting, we do not guarantee 100% threat detection or compliance certification.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">

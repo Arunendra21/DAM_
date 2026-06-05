@@ -5,32 +5,11 @@ import { motion } from 'framer-motion'
 import { HardDrive, Plus, RotateCcw, Download } from 'lucide-react'
 import { Breadcrumb } from '@/components/dashboard/enterprise/shared/Breadcrumb'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
-import { DataTable } from '@/components/dashboard/enterprise/tables/DataTable'
 import { StatusBadge } from '@/components/dashboard/enterprise/shared/StatusBadge'
 import { backupDataData } from '@/lib/dashboard/dam-pages-data'
 
 function BackupRecoveryPageContent() {
   const [backups] = useState(backupDataData)
-
-  const columns = [
-    { key: 'database' as const, label: 'Database', sortable: true },
-    { key: 'backupTime' as const, label: 'Backup Time', sortable: true },
-    { key: 'size' as const, label: 'Size' },
-    { key: 'duration' as const, label: 'Duration' },
-    {
-      key: 'status' as const,
-      label: 'Status',
-      render: (value: string) => {
-        const statusMap: Record<string, 'healthy' | 'warning' | 'critical'> = {
-          Completed: 'healthy',
-          'In Progress': 'warning',
-          Failed: 'critical',
-        }
-        return <StatusBadge status={statusMap[value] || 'warning'} label={value} size="sm" />
-      },
-    },
-    { key: 'nextScheduled' as const, label: 'Next Scheduled' },
-  ]
 
   return (
     <div className="p-6">

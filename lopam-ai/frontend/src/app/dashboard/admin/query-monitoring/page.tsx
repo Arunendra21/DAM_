@@ -20,13 +20,14 @@ function QueryMonitoringContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const statusMap: Record<string, 'active' | 'warning' | 'critical'> = {
           Running: 'active',
           Slow: 'warning',
           Failed: 'critical',
         }
-        return <StatusBadge status={statusMap[value] || 'active'} label={value} size="sm" />
+        return <StatusBadge status={statusMap[stringValue] || 'active'} label={stringValue} size="sm" />
       },
     },
     { key: 'type' as const, label: 'Type' },

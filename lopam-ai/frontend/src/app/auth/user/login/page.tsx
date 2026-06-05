@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { AuthLayout } from '@/components/auth/AuthLayout'
 import { AuthForm } from '@/components/auth/AuthForm'
 import { loginUser, getRememberedEmail } from '@/lib/api/auth-flow'
-import { motion } from 'framer-motion'
 
 export default function UserLogin() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [initialEmail, setInitialEmail] = useState('')
+  const [, setInitialEmail] = useState('')
 
   useEffect(() => {
     const remembered = getRememberedEmail()

@@ -31,6 +31,12 @@ export interface LoginResponse {
   }
 }
 
+export interface RegisterResponse {
+  success?: boolean
+  message?: string
+  details?: Array<{ message: string }>
+}
+
 export async function loginUser(credentials: LoginRequest): Promise<LoginResponse | null> {
   const response = await apiRequest<LoginResponse>('/api/auth/login', {
     method: 'POST',
@@ -59,7 +65,7 @@ export async function loginUser(credentials: LoginRequest): Promise<LoginRespons
 }
 
 export async function registerUser(data: RegisterRequest): Promise<{ success: boolean; message: string }> {
-  const response = await apiRequest<any>('/api/auth/register', {
+  const response = await apiRequest<RegisterResponse>('/api/auth/register', {
     method: 'POST',
     body: data,
     useAuth: false,

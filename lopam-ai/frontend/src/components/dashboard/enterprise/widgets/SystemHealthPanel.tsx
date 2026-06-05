@@ -49,7 +49,6 @@ export function SystemHealthPanel({ data }: SystemHealthPanelProps) {
       <div className="grid grid-cols-2 gap-3">
         {metrics.map((metric, idx) => {
           const Icon = metric.icon
-          const isLatency = ['apiLatency', 'queryResponse'].includes(metric.label.replace(/\s/g, ''))
           const healthColor = getHealthColor(metric.value, metric.label.includes('Latency') || metric.label.includes('Response'))
 
           return (

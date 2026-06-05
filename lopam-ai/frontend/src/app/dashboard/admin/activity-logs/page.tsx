@@ -20,14 +20,15 @@ function ActivityLogsPageContent() {
     {
       key: 'severity' as const,
       label: 'Severity',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const severityStatusMap: Record<string, 'critical' | 'high' | 'warning' | 'info'> = {
           critical: 'critical',
           warning: 'warning',
           info: 'info',
         }
-        const statusValue = severityStatusMap[value] || 'info'
-        return <StatusBadge status={statusValue} label={value} size="sm" />
+        const statusValue = severityStatusMap[stringValue] || 'info'
+        return <StatusBadge status={statusValue} label={stringValue} size="sm" />
       },
     },
     { key: 'details' as const, label: 'Details' },

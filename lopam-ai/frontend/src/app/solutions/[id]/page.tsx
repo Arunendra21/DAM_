@@ -2,8 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
-import { solutions, solutionByCaseStudy } from '@/data/solutions'
-import { caseStudies, caseStudyById } from '@/data/case-studies'
+import { solutions } from '@/data/solutions'
 import Link from 'next/link'
 
 export async function generateStaticParams() {
@@ -37,8 +36,6 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
     notFound()
   }
 
-  // Get related case study
-  const relatedCaseStudy = caseStudyById[solution.caseStudyId]
   const relatedSolutions = solutions.filter((s) => s.id !== params.id).slice(0, 2)
 
   return (
@@ -153,43 +150,6 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
         </section>
 
         {/* Case Study Section */}
-        {relatedCaseStudy && (
-          <section className="section-container">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
-                Success Story
-              </h2>
-
-              <div className="rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-8 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                  {relatedCaseStudy.title}
-                </h3>
-                <p className="text-slate-700 dark:text-gray-200 font-medium leading-relaxed mb-6">
-                  {relatedCaseStudy.summary}
-                </p>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                  {relatedCaseStudy.results.split(', ').map((result, idx) => (
-                    <div
-                      key={idx}
-                      className="p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
-                    >
-                      <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                        {result}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <Link href={`/resources/case-studies/${relatedCaseStudy.slug}`}>
-                  <button className="text-primary font-bold hover:underline">
-                    Read Full Case Study →
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* Related Solutions */}
         {relatedSolutions.length > 0 && (

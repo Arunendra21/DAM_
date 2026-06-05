@@ -84,7 +84,7 @@ export default function CareersPage() {
               Join Our Team
             </h1>
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              Help us build the future of database security. We're hiring talented engineers, security researchers, and product professionals.
+              Help us build the future of database security. We&apos;re hiring talented engineers, security researchers, and product professionals.
             </p>
           </div>
         </section>
@@ -214,7 +214,7 @@ export default function CareersPage() {
                   Mission-Driven
                 </h3>
                 <p className="text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-                  Everyone on our team is united by a shared mission: to secure enterprise databases and protect sensitive data globally. We're not just building a product, we're building a movement.
+                  Everyone on our team is united by a shared mission: to secure enterprise databases and protect sensitive data globally. We&apos;re not just building a product, we&apos;re building a movement.
                 </p>
               </div>
 
@@ -287,10 +287,10 @@ export default function CareersPage() {
         <section className="section-container">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
-              Don't See a Perfect Fit?
+              Don&apos;t See a Perfect Fit?
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              We're always interested in exceptional people. Send us your resume and a note about why you'd like to work on database security.
+              We&apos;re always interested in exceptional people. Send us your resume and a note about why you&apos;d like to work on database security.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300">

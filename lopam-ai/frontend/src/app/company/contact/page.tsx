@@ -214,7 +214,7 @@ export default function ContactPage() {
         <section className="section-container bg-gradient-to-b from-transparent via-primary/5 to-transparent dark:via-primary/10">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
-              We're Here to Help
+              We&apos;re Here to Help
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[

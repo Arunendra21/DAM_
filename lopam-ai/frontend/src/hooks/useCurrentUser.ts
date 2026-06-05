@@ -29,7 +29,7 @@ export function useCurrentUser() {
               setUser(userData)
               setIsLoading(false)
               return
-            } catch (e) {
+            } catch {
               // If localStorage data is invalid, try API
             }
           }

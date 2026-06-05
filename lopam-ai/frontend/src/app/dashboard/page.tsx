@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Loader, LogOut, Home } from 'lucide-react'
 import { apiRequest, getAccessToken, removeTokens } from '@/lib/api/client'
 
 interface User {
@@ -17,7 +16,7 @@ interface User {
 
 export default function DashboardPage() {
   const router = useRouter()
-  const [user, setUser] = useState<User | null>(null)
+  const [, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -58,10 +57,11 @@ export default function DashboardPage() {
     }
 
     // If no cached user, fetch from API
-    apiRequest('/api/auth/me', { useAuth: true })
+    apiRequest<User | { user: User }>('/api/auth/me', { useAuth: true })
       .then((response) => {
         if (response.success && response.data) {
-          userData = response.data.user || response.data
+          const data = response.data as { user?: User } | User
+          userData = ('user' in data && data.user) ? data.user : (data as User)
           setUser(userData)
 
           // Redirect based on role

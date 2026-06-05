@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FileText, Search, Download, Filter } from 'lucide-react'
+import { FileText, Search, Download } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userPortalData } from '@/lib/dashboard/user-portal-complete-data'
 

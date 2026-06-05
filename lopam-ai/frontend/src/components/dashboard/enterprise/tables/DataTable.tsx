@@ -7,7 +7,7 @@ import { Search, ChevronDown, Eye, Trash2, Edit2 } from 'lucide-react'
 interface Column<T> {
   key: keyof T
   label: string
-  render?: (value: any, row: T) => React.ReactNode
+  render?: (value: unknown, row?: T) => React.ReactNode
   sortable?: boolean
   searchable?: boolean
 }

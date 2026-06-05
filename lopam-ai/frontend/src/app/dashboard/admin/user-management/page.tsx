@@ -21,9 +21,12 @@ function UserManagementContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => (
-        <StatusBadge status={value === 'Active' ? 'active' : 'inactive'} label={value} />
-      ),
+      render: (value: unknown) => {
+        const stringValue = String(value)
+        return (
+          <StatusBadge status={stringValue === 'Active' ? 'active' : 'inactive'} label={stringValue} />
+        )
+      },
     },
   ]
 

@@ -9,11 +9,6 @@ import { LoadingSequence } from './LoadingSequence'
 import { LoadingMetrics } from './LoadingMetrics'
 import { useRouter } from 'next/navigation'
 
-interface LoadingStep {
-  label: string
-  completed: boolean
-}
-
 const LOADING_STEPS = [
   'Initializing Secure Environment',
   'Scanning Connected Databases',
@@ -32,9 +27,7 @@ export function LoadingScreen() {
   const router = useRouter()
 
   useEffect(() => {
-    let progressInterval: NodeJS.Timeout
-
-    progressInterval = setInterval(() => {
+    const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) return 100
         const increment = Math.random() * 8 + 2

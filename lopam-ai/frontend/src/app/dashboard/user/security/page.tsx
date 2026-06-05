@@ -9,8 +9,6 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, R
 export default function SecurityCenterPage() {
   const data = userPortalData.securityCenter
 
-  const scoreColor = data.overallScore >= 80 ? 'from-green-500 to-cyan-500' : data.overallScore >= 60 ? 'from-yellow-500 to-orange-500' : 'from-red-500 to-orange-500'
-
   return (
     <UserDashboardLayout>
       <div className="space-y-8">

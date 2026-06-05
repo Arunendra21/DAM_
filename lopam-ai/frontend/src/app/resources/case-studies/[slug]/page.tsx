@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
-import { caseStudies, caseStudyById } from '@/data/case-studies'
+import { caseStudies } from '@/data/case-studies'
 import Link from 'next/link'
 
 export async function generateStaticParams() {
@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   return {
     title: `${caseStudy.title} - Lopam AI Case Study`,
-    description: caseStudy.summary,
+    description: caseStudy.title,
     openGraph: {
       title: `${caseStudy.title} - Lopam AI`,
-      description: caseStudy.summary,
+      description: caseStudy.title,
       url: `https://lopam-ai.com/resources/case-studies/${params.slug}`,
       type: 'article',
     },
@@ -61,7 +61,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </h1>
 
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              {caseStudy.summary}
+              {caseStudy.title}
             </p>
           </div>
         </section>
@@ -221,7 +221,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               Ready to Achieve Similar Results?
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              Let's discuss how Lopam AI can transform your database security and compliance posture.
+              Let&apos;s discuss how Lopam AI can transform your database security and compliance posture.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300">

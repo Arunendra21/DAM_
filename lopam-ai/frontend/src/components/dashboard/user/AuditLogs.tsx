@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Download, Filter } from 'lucide-react'
+import { Search, Download } from 'lucide-react'
 
 interface AuditLog {
   timestamp: string

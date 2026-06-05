@@ -25,7 +25,6 @@ export default function EnterpriseDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   // Fixed: Removed missing widget imports
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [isDarkMode] = useState(true)
 
   useEffect(() => {
     const token = getAccessToken()

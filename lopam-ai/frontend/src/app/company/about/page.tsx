@@ -177,7 +177,7 @@ export default function AboutPage() {
               Join Us in Our Mission
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              Whether you're interested in using Lopam AI or joining our team, we'd love to talk.
+              Whether you&apos;re interested in using Lopam AI or joining our team, we&apos;d love to talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/demo">

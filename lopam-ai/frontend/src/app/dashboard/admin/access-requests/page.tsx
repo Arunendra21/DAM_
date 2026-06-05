@@ -21,13 +21,14 @@ function AccessRequestsContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const statusMap: Record<string, 'pending' | 'active' | 'warning'> = {
           Pending: 'pending',
           Approved: 'active',
           Rejected: 'warning',
         }
-        return <StatusBadge status={statusMap[value] || 'pending'} label={value} />
+        return <StatusBadge status={statusMap[stringValue] || 'pending'} label={stringValue} />
       },
     },
     { key: 'requestedDate' as const, label: 'Requested Date' },

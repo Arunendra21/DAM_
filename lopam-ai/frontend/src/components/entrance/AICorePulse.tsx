@@ -8,7 +8,7 @@ interface AICorePulseProps {
   isRevealing: boolean
 }
 
-export function AICorePulse({ progress, isRevealing }: AICorePulseProps) {
+export function AICorePulse({ isRevealing }: AICorePulseProps) {
   const [dataStreams, setDataStreams] = useState<Array<{ id: number; angle: number }>>([])
 
   useEffect(() => {
@@ -153,8 +153,6 @@ export function AICorePulse({ progress, isRevealing }: AICorePulseProps) {
       {/* Energy emission rays */}
       {[0, 1, 2, 3, 4, 5].map((i) => {
         const angle = (i / 6) * Math.PI * 2
-        const x1 = Math.cos(angle) * 60
-        const y1 = Math.sin(angle) * 60
         const x2 = Math.cos(angle) * 140
         const y2 = Math.sin(angle) * 140
 

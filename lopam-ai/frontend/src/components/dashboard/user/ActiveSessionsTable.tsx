@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Eye, Phone, MapPin, Globe } from 'lucide-react'
+import { Eye, MapPin } from 'lucide-react'
 
 interface Session {
   id: string

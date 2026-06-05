@@ -23,7 +23,6 @@ interface AccessRequestCenterProps {
 
 export default function AccessRequestCenter({
   requests,
-  onNewRequest,
   showModal,
   setShowModal,
 }: AccessRequestCenterProps) {

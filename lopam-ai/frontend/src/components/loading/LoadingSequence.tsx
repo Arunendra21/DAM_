@@ -33,7 +33,6 @@ export function LoadingSequence({ currentStep, steps }: LoadingSequenceProps) {
       {steps.map((step, index) => {
         const isCompleted = index < currentStep
         const isCurrent = index === currentStep
-        const isPending = index > currentStep
 
         return (
           <motion.div

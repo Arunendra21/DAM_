@@ -15,7 +15,7 @@ export function SolutionsPreview() {
         <div className="section-header">
           <h2 className="section-title">Industry-Specific Solutions</h2>
           <p className="section-subtitle">
-            Tailored security platforms for your industry's unique compliance requirements
+            Tailored security platforms for your industry&apos;s unique compliance requirements
           </p>
         </div>
 

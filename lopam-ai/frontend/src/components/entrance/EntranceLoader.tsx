@@ -27,10 +27,9 @@ export function EntranceLoader({ children }: EntranceLoaderProps) {
     }
 
     // Animate progress
-    let progressInterval: NodeJS.Timeout
     let currentProgress = 0
 
-    progressInterval = setInterval(() => {
+    const progressInterval = setInterval(() => {
       currentProgress += Math.random() * 15 + 5
       if (currentProgress >= 95) {
         currentProgress = 95

@@ -69,7 +69,7 @@ export function SupportedDatabases() {
           className="mt-12 p-8 rounded-2xl bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700"
         >
           <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            Don't see your database?
+            Don&apos;t see your database?
           </h3>
           <p className="text-slate-700 dark:text-gray-200 font-medium mb-6 max-w-2xl">
             We support custom database integrations. Contact our team to discuss your specific database platform needs and requirements.

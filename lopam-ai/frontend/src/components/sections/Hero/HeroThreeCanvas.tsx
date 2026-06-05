@@ -121,13 +121,15 @@ export function HeroThreeCanvas() {
 
     window.addEventListener('resize', handleResize)
 
+    const container = containerRef.current
+
     return () => {
       window.removeEventListener('resize', handleResize)
       cancelAnimationFrame(animationFrameId)
       renderer.dispose()
       geometry.dispose()
       material.dispose()
-      containerRef.current?.removeChild(renderer.domElement)
+      container?.removeChild(renderer.domElement)
     }
   }, [mounted])
 

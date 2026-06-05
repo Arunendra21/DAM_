@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface HealthData {
   name: string
@@ -14,7 +14,6 @@ interface DatabaseHealthStatusProps {
 }
 
 export function DatabaseHealthStatus({ data }: DatabaseHealthStatusProps) {
-  const total = data.reduce((sum, item) => sum + item.value, 0)
 
   return (
     <motion.div

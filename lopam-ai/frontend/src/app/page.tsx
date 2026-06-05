@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     'GDPR',
   ],
   metadataBase: new URL('https://lopam-ai.com'),
-  canonical: 'https://lopam-ai.com',
   openGraph: {
     title: 'Lopam AI - Enterprise Database Security',
     description: 'Real-time database monitoring and threat detection for enterprises',

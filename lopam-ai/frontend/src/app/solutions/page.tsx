@@ -28,7 +28,7 @@ export default function SolutionsPage() {
               Industry-Specific Solutions
             </h1>
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              Tailored database security platforms designed for your industry's unique compliance requirements and challenges.
+              Tailored database security platforms designed for your industry&apos;s unique compliance requirements and challenges.
             </p>
           </div>
         </section>

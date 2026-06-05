@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { AuthLayout } from '@/components/auth/AuthLayout'
 import { AuthForm } from '@/components/auth/AuthForm'
 import { loginUser, getRememberedEmail } from '@/lib/api/auth-flow'
@@ -12,7 +11,7 @@ export default function AdminLogin() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [initialEmail, setInitialEmail] = useState('')
+  const [, setInitialEmail] = useState('')
 
   useEffect(() => {
     // Pre-fill email if "Remember Me" was checked

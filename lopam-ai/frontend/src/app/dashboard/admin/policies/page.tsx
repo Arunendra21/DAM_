@@ -18,13 +18,16 @@ function PoliciesPageContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => (
-        <StatusBadge
-          status={value === 'Active' ? 'active' : 'warning'}
-          label={value}
-          size="sm"
-        />
-      ),
+      render: (value: unknown) => {
+        const stringValue = String(value)
+        return (
+          <StatusBadge
+            status={stringValue === 'Active' ? 'active' : 'warning'}
+            label={stringValue}
+            size="sm"
+          />
+        )
+      },
     },
     { key: 'lastUpdated' as const, label: 'Last Updated' },
     { key: 'appliedTo' as const, label: 'Applied To' },

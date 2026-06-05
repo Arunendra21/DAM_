@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface DistributionData {
   name: string
@@ -49,7 +49,7 @@ export function DatabaseDistributionWidget({ data }: DatabaseDistributionWidgetP
               border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '8px',
             }}
-            formatter={(value: number, name) => {
+            formatter={(value: number) => {
               const percentage = ((value / total) * 100).toFixed(1)
               return [`${value} (${percentage}%)`, 'Count']
             }}

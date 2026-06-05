@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { TrendingUp } from 'lucide-react'
 
 interface LoadData {
   name: string

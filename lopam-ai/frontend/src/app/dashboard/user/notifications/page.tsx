@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Bell, Trash2, Archive, Filter } from 'lucide-react'
+import { Bell, Trash2, Archive } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userPortalData } from '@/lib/dashboard/user-portal-complete-data'
 

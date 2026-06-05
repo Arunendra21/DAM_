@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, ChevronDown, Eye, Lock } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 interface Database {
   id: string
@@ -22,7 +22,6 @@ interface DatabaseAccessTableProps {
 
 export default function DatabaseAccessTable({ databases }: DatabaseAccessTableProps) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortBy, setSortBy] = useState('name')
   const [filterEnv, setFilterEnv] = useState('All')
 
   const filtered = databases.filter(

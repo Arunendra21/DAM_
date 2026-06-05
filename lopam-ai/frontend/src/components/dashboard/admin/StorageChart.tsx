@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface StorageData {
   name: string
@@ -11,7 +11,6 @@ interface StorageChartProps {
 }
 
 export function StorageChart({ data }: StorageChartProps) {
-  const maxValue = Math.max(...data.map(d => d.value))
 
   return (
     <motion.div

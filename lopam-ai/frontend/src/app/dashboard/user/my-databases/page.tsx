@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Database, Search, Filter, Download, Eye, Plus, TrendingUp } from 'lucide-react'
+import { Database, Search, Download, Eye, TrendingUp } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userPortalData } from '@/lib/dashboard/user-portal-complete-data'
 import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'

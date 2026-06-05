@@ -3,11 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Loader } from 'lucide-react'
 import { getAccessToken, removeTokens } from '@/lib/api/client'
 import { SidebarNew } from '@/components/dashboard/enterprise/SidebarNew'
 import { NavbarNew } from '@/components/dashboard/enterprise/NavbarNew'
-import { KPICardsNew } from '@/components/dashboard/enterprise/KPICardsNew'
+import { KPICards } from '@/components/dashboard/enterprise/KPICards'
 import { DatabaseDistributionWidget } from '@/components/dashboard/enterprise/widgets/DatabaseDistributionWidget'
 import { DatabaseGrowthTrend } from '@/components/dashboard/enterprise/widgets/DatabaseGrowthTrend'
 import { QueryMonitoring } from '@/components/dashboard/enterprise/widgets/QueryMonitoring'
@@ -109,7 +108,7 @@ export default function EnterpriseDashboard() {
             </motion.div>
 
             {/* KPI Cards */}
-            <KPICardsNew data={enterpriseDashboardData.kpis} />
+            <KPICards data={enterpriseDashboardData.kpis} />
 
             {/* Main Grid - Charts and Widgets */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 mt-8">

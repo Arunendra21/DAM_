@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Database, Plus, TrendingUp } from 'lucide-react'
+import { Database, Plus } from 'lucide-react'
 import { Breadcrumb } from '@/components/dashboard/enterprise/shared/Breadcrumb'
 import { DataTable } from '@/components/dashboard/enterprise/tables/DataTable'
 import { StatusBadge } from '@/components/dashboard/enterprise/shared/StatusBadge'
@@ -21,13 +21,14 @@ function DatabaseInventoryContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const statusMap: Record<string, 'healthy' | 'warning' | 'critical'> = {
           Healthy: 'healthy',
           Warning: 'warning',
           Critical: 'critical',
         }
-        return <StatusBadge status={statusMap[value] || 'healthy'} label={value} />
+        return <StatusBadge status={statusMap[stringValue] || 'healthy'} label={stringValue} />
       },
     },
     { key: 'lastBackup' as const, label: 'Last Backup' },

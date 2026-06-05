@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Activity, MapPin, Phone } from 'lucide-react'
+import { Activity, MapPin } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userPortalData } from '@/lib/dashboard/user-portal-complete-data'
 import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'

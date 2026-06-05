@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Lock, Plus, RotateCw } from 'lucide-react'
+import { Lock, Plus } from 'lucide-react'
 import { Breadcrumb } from '@/components/dashboard/enterprise/shared/Breadcrumb'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { DataTable } from '@/components/dashboard/enterprise/tables/DataTable'
@@ -18,13 +18,14 @@ function EncryptionManagementPageContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const statusMap: Record<string, 'active' | 'inactive' | 'warning'> = {
           Active: 'active',
           Expired: 'warning',
           Inactive: 'inactive',
         }
-        return <StatusBadge status={statusMap[value] || 'inactive'} label={value} size="sm" />
+        return <StatusBadge status={statusMap[stringValue] || 'inactive'} label={stringValue} size="sm" />
       },
     },
     { key: 'createdDate' as const, label: 'Created' },

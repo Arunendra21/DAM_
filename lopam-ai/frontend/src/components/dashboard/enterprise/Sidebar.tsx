@@ -19,7 +19,6 @@ import {
   BarChart3,
   TrendingUp,
   Settings,
-  Bell,
   X,
 } from 'lucide-react'
 

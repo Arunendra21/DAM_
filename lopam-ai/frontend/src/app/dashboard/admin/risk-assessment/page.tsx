@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUp, AlertTriangle } from 'lucide-react'
+import { TrendingUp } from 'lucide-react'
 import { Breadcrumb } from '@/components/dashboard/enterprise/shared/Breadcrumb'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { riskAssessmentData } from '@/lib/dashboard/dam-pages-data'

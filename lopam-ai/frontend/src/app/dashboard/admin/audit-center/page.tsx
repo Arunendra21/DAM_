@@ -21,13 +21,16 @@ function AuditCenterPageContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => (
-        <StatusBadge
-          status={value === 'Success' ? 'healthy' : value === 'Blocked' ? 'critical' : 'warning'}
-          label={value}
-          size="sm"
-        />
-      ),
+      render: (value: unknown) => {
+        const stringValue = String(value)
+        return (
+          <StatusBadge
+            status={stringValue === 'Success' ? 'healthy' : stringValue === 'Blocked' ? 'critical' : 'warning'}
+            label={stringValue}
+            size="sm"
+          />
+        )
+      },
     },
   ]
 

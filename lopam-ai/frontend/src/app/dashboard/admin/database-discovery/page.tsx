@@ -20,27 +20,29 @@ function DatabaseDiscoveryPageContent() {
     {
       key: 'status' as const,
       label: 'Status',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const statusMap: Record<string, 'pending' | 'active' | 'warning'> = {
           New: 'pending',
           Classified: 'active',
           Review: 'warning',
         }
-        return <StatusBadge status={statusMap[value] || 'pending'} label={value} size="sm" />
+        return <StatusBadge status={statusMap[stringValue] || 'pending'} label={stringValue} size="sm" />
       },
     },
     { key: 'owner' as const, label: 'Owner' },
     {
       key: 'sensitivity' as const,
       label: 'Sensitivity',
-      render: (value: string) => {
+      render: (value: unknown) => {
+        const stringValue = String(value)
         const colorMap: Record<string, string> = {
           'Unknown': 'text-gray-400',
           'Low': 'text-green-400',
           'High': 'text-orange-400',
           'Critical': 'text-red-400',
         }
-        return <span className={`font-semibold text-sm ${colorMap[value] || 'text-gray-400'}`}>{value}</span>
+        return <span className={`font-semibold text-sm ${colorMap[stringValue] || 'text-gray-400'}`}>{stringValue}</span>
       },
     },
   ]

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Settings, Save, Lock, Smartphone, LogOut } from 'lucide-react'
+import { Settings, Save, Lock, Smartphone } from 'lucide-react'
 import { UserDashboardLayout } from '@/components/dashboard/UserDashboardLayout'
 import { userPortalData } from '@/lib/dashboard/user-portal-complete-data'
 

@@ -133,7 +133,7 @@ export default function ForgotPasswordPage() {
           >
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-white mb-2">Forgot Your Password?</h2>
-              <p className="text-gray-400">Enter your email address and we'll send you an OTP</p>
+              <p className="text-gray-400">Enter your email address and we&apos;ll send you an OTP</p>
             </div>
 
             <div className="mb-6">

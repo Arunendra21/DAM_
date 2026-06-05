@@ -6,8 +6,6 @@ import {
   Clock,
   CheckCircle,
   LogIn,
-  TrendingUp,
-  TrendingDown,
 } from 'lucide-react'
 
 interface Stat {
@@ -55,7 +53,6 @@ export default function UserTopStats({ stats }: UserTopStatsProps) {
     >
       {stats.map((stat, index) => {
         const Icon = iconMap[stat.icon as keyof typeof iconMap] || Database
-        const isNumeric = typeof stat.value === 'number'
 
         return (
           <motion.div

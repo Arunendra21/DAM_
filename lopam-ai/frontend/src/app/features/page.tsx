@@ -3,7 +3,6 @@ import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
 import { features } from '@/data/features'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 export const metadata: Metadata = {
   title: 'Features - Lopam AI Enterprise Database Security',
@@ -53,7 +52,7 @@ export default function FeaturesPage() {
                   <div className="group relative h-full p-8 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/30 bg-white dark:bg-slate-900 hover:shadow-lg transition-all duration-300 cursor-pointer">
                     <div className="text-4xl mb-4">{feature.icon}</div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors duration-300">
-                      {feature.name}
+                      {feature.title}
                     </h3>
                     <p className="text-slate-700 dark:text-gray-200 font-medium text-sm leading-relaxed">
                       {feature.description}
