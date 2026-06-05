@@ -1,4 +1,4 @@
-import { apiRequest, setAccessToken, setRefreshToken, removeTokens } from './client'
+import { apiRequest, setAccessToken, setRefreshToken, removeTokens, getToken } from './client'
 
 export interface LoginRequest {
   emailOrUsername: string
