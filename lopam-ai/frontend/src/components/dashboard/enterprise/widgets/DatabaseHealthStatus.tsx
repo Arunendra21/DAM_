@@ -39,7 +39,7 @@ export function DatabaseHealthStatus({ data }: DatabaseHealthStatusProps) {
               background: 'rgba(15, 23, 42, 0.9)',
               border: '1px solid rgba(59, 130, 246, 0.3)',
             }}
-            formatter={(value: number) => [`${value}`, 'Count']}
+            formatter={(value: unknown) => typeof value === 'number' ? `${value}` : String(value)}
           />
         </PieChart>
       </ResponsiveContainer>

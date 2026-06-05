@@ -40,7 +40,7 @@ export function StorageConsumption({ data }: StorageConsumptionProps) {
               background: 'rgba(15, 23, 42, 0.9)',
               border: '1px solid rgba(59, 130, 246, 0.3)',
             }}
-            formatter={(value: number) => `${value.toFixed(1)} TB`}
+            formatter={(value: unknown) => typeof value === 'number' ? `${value.toFixed(1)} TB` : String(value)}
           />
           <Legend wrapperStyle={{ color: '#d1d5db' }} />
           <Bar dataKey="used" stackId="a" fill="#3b82f6" name="Used" radius={[8, 8, 0, 0]} />
