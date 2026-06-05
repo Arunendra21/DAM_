@@ -1,4 +1,4 @@
-import { apiRequest, setAccessToken, setRefreshToken, removeTokens, getToken } from './client'
+import { apiRequest, setAccessToken, setRefreshToken, removeTokens, getAccessToken } from './client'
 
 export interface LoginRequest {
   emailOrUsername: string
@@ -147,7 +147,7 @@ export async function verifyMFA(code: string): Promise<{ success: boolean; messa
 }
 
 export function isAuthenticated(): boolean {
-  return getToken() !== null
+  return getAccessToken() !== null
 }
 
 export function getCurrentUser(): LoginResponse['user'] | null {
