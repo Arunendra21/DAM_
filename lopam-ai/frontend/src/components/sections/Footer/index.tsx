@@ -31,7 +31,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company section — commented out
           <div>
             <h4 className="font-bold text-slate-900 dark:text-white mb-4 text-lg">Company</h4>
             <ul className="space-y-2">
@@ -44,8 +44,9 @@ export function Footer() {
               ))}
             </ul>
           </div>
+          */}
 
-          {/* Legal */}
+          {/* Legal section — commented out
           <div>
             <h4 className="font-bold text-slate-900 dark:text-white mb-4 text-lg">Legal</h4>
             <ul className="space-y-2">
@@ -58,6 +59,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
+          */}
         </div>
 
         <div className="border-t border-slate-300 dark:border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
