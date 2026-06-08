@@ -27,7 +27,7 @@ export class DashboardService {
 
     const privilegedAccounts = await prisma.user.count({
       where: {
-        roles: {
+        userRoles: {
           some: {
             role: {
               name: { in: ['SUPER_ADMIN', 'SECURITY_ADMIN', 'DBA'] },

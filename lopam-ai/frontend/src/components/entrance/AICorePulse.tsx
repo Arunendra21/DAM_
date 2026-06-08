@@ -111,8 +111,8 @@ export function AICorePulse({ isRevealing }: AICorePulseProps) {
           {/* AI symbol - interconnected nodes */}
           {[0, 1, 2, 3].map((i) => {
             const angle = (i / 4) * Math.PI * 2
-            const x = Math.cos(angle) * 50
-            const y = Math.sin(angle) * 50
+            const x = Math.round(Math.cos(angle) * 50 * 1000) / 1000
+            const y = Math.round(Math.sin(angle) * 50 * 1000) / 1000
             return (
               <motion.div
                 key={`node-${i}`}
@@ -153,8 +153,10 @@ export function AICorePulse({ isRevealing }: AICorePulseProps) {
       {/* Energy emission rays */}
       {[0, 1, 2, 3, 4, 5].map((i) => {
         const angle = (i / 6) * Math.PI * 2
-        const x2 = Math.cos(angle) * 140
-        const y2 = Math.sin(angle) * 140
+        // Round to a fixed precision so the server- and client-rendered SVG
+        // coordinates are byte-identical (avoids float hydration mismatches).
+        const x2 = Math.round(Math.cos(angle) * 140 * 1000) / 1000
+        const y2 = Math.round(Math.sin(angle) * 140 * 1000) / 1000
 
         return (
           <svg

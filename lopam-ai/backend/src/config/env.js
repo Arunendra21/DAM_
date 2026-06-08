@@ -58,3 +58,33 @@ for (const key of required) {
     process.exit(1)
   }
 }
+
+// Production-only hardening: refuse to boot with weak or placeholder secrets,
+// or with the two JWT secrets accidentally set to the same value.
+if (config.isProd) {
+  const weakValues = [
+    'your-super-secret-jwt-key-change-in-production',
+    'your-super-secret-refresh-token-key-change-in-production',
+    'changeme',
+    'secret',
+  ]
+
+  const checkSecret = (name, value) => {
+    if (!value || value.length < 32) {
+      console.error(`${name} must be at least 32 characters long in production.`)
+      process.exit(1)
+    }
+    if (weakValues.includes(value)) {
+      console.error(`${name} is using a known default/placeholder value. Set a strong secret.`)
+      process.exit(1)
+    }
+  }
+
+  checkSecret('JWT_SECRET', config.jwt.secret)
+  checkSecret('JWT_REFRESH_SECRET', config.jwt.refreshSecret)
+
+  if (config.jwt.secret === config.jwt.refreshSecret) {
+    console.error('JWT_SECRET and JWT_REFRESH_SECRET must be different values.')
+    process.exit(1)
+  }
+}

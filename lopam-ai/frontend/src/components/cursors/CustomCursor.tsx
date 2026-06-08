@@ -29,6 +29,9 @@ export function CustomCursor() {
   })
 
   const animationFrameRef = useRef<number | null>(null)
+  // Mirror isActive in a ref so the listener/RAF effect can run once instead of
+  // tearing down and re-attaching every time hover/active state changes.
+  const isActiveRef = useRef(false)
 
   // Check if cursor should be disabled
   const shouldDisableCursor = () => {
@@ -89,11 +92,15 @@ export function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       stateRef.current.targetX = e.clientX
       stateRef.current.targetY = e.clientY
-      if (!isActive) setIsActive(true)
+      if (!isActiveRef.current) {
+        isActiveRef.current = true
+        setIsActive(true)
+      }
     }
 
     // Handle mouse leave
     const handleMouseLeave = () => {
+      isActiveRef.current = false
       setIsActive(false)
     }
 
@@ -159,7 +166,11 @@ export function CustomCursor() {
       document.removeEventListener('click', handleClick)
       document.documentElement.style.cursor = 'auto'
     }
-  }, [isActive, isHovering])
+    // Run once: handlers use refs/setState (idempotent) so they never need the
+    // effect to re-subscribe. This avoids re-attaching listeners + restarting
+    // the RAF loop on every hover/active state change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!isEnabled || !isMounted) {
     return null

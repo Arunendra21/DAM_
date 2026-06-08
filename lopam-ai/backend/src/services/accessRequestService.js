@@ -239,7 +239,7 @@ export class AccessRequestService {
     try {
       const securityAdmins = await prisma.user.findMany({
         where: {
-          roles: {
+          userRoles: {
             some: { role: { name: 'SECURITY_ADMIN' } },
           },
         },

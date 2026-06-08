@@ -2,9 +2,8 @@
 
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { ArrowRight, Shield } from 'lucide-react'
+import { Shield } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '@/lib/motion/variants'
 
 const HeroThreeCanvas = dynamic(() => import('./HeroThreeCanvas').then((mod) => ({ default: mod.HeroThreeCanvas })), {
@@ -43,7 +42,8 @@ export function Hero() {
             variants={fadeInUp}
             className="text-5xl lg:text-7xl font-black mb-6 text-balance leading-tight text-slate-900 dark:text-white"
           >
-            Database Activity{' '}
+            Lopam DAM
+            <br />
             <span className="text-primary-dark dark:text-primary">
               Monitoring Made Simple
             </span>
@@ -58,7 +58,7 @@ export function Hero() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="group">
               Start Free Trial
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -66,7 +66,7 @@ export function Hero() {
             <Button size="lg" variant="secondary">
               Watch Demo
             </Button>
-          </motion.div>
+          </motion.div> */}
 
           {/* Trust Metric */}
           <motion.div

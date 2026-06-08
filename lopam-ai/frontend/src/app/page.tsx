@@ -6,7 +6,6 @@ import { CoreFeatures } from '@/components/sections/CoreFeatures'
 import { DashboardPreview } from '@/components/sections/DashboardPreview'
 import { SecurityAnalytics } from '@/components/sections/SecurityAnalytics'
 import { Compliance } from '@/components/sections/Compliance'
-import { Testimonials } from '@/components/sections/Testimonials'
 import { FAQ } from '@/components/sections/FAQ'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/sections/Footer'
@@ -29,28 +28,21 @@ export const metadata: Metadata = {
     'HIPAA',
     'GDPR',
   ],
-  metadataBase: new URL('https://lopam-ai.com'),
+  // metadataBase, OG/Twitter images and robots are inherited from the root
+  // layout. The OG/Twitter image is the real generated app/opengraph-image.tsx
+  // (the previous static /og-image.jpg did not exist and returned 404).
   openGraph: {
     title: 'Lopam AI - Enterprise Database Security',
     description: 'Real-time database monitoring and threat detection for enterprises',
-    url: 'https://lopam-ai.com',
+    url: '/',
     siteName: 'Lopam AI',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Lopam AI Platform',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Lopam AI - Enterprise Database Security',
     description: 'Real-time database monitoring and threat detection',
   },
-  robots: 'index, follow',
 }
 
 export default function Home() {
@@ -68,7 +60,7 @@ export default function Home() {
         <SecurityAnalytics />
         <Compliance />
         <SolutionsPreview />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <FAQ />
         <Contact />
       </main>

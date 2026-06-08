@@ -4,7 +4,7 @@ import {
   comparePassword,
   validatePasswordStrength,
 } from '../utils/password.js'
-import { generateTokens } from '../utils/jwt.js'
+import { generateTokens, verifyRefreshToken } from '../utils/jwt.js'
 import {
   AuthenticationError,
   ConflictError,
@@ -169,10 +169,14 @@ export class AuthService {
   }
 
   async refreshAccessToken(refreshToken) {
-    // Find session
+    // Cryptographically verify the refresh token signature/expiry first, so a
+    // tampered or foreign-signed token is rejected before any DB work.
+    verifyRefreshToken(refreshToken)
+
+    // Find session (the `User.roles` relation does not exist — the relation is
+    // `userRoles` — and it was unused here, so no include is needed).
     const session = await prisma.session.findUnique({
       where: { refreshToken },
-      include: { user: { include: { roles: { include: { role: true } } } } },
     })
 
     if (!session) {
@@ -180,6 +184,8 @@ export class AuthService {
     }
 
     if (new Date() > session.expiresAt) {
+      // Clean up the expired session so it cannot be reused.
+      await prisma.session.delete({ where: { id: session.id } }).catch(() => {})
       throw new AuthenticationError('Refresh token expired')
     }
 

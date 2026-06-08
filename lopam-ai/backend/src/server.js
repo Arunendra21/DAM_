@@ -2,6 +2,8 @@ import express from 'express'
 import 'express-async-errors'
 import cors from 'cors'
 import morgan from 'morgan'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 import { config } from './config/env.js'
 import { logger } from './utils/logger.js'
 import { errorHandler } from './middleware/errorHandler.js'
@@ -19,8 +21,30 @@ const app = express()
 // MIDDLEWARE
 // ============================================
 
+// Behind a reverse proxy (Render/Vercel/NGINX): trust the first proxy so that
+// rate limiting, secure cookies and req.ip use the real client IP from
+// X-Forwarded-For instead of the proxy address.
+app.set('trust proxy', 1)
+
+// Security headers (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, etc.)
+// This is a pure JSON API, so a strict CSP that blocks all rendering is safe.
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'none'"],
+        frameAncestors: ["'none'"],
+      },
+    },
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    hsts: config.isProd
+      ? { maxAge: 15552000, includeSubDomains: true, preload: true }
+      : false,
+  })
+)
+
 // Logging
-app.use(morgan('combined'))
+app.use(morgan(config.isProd ? 'combined' : 'dev'))
 
 // CORS
 const corsOptions = {
@@ -41,14 +65,51 @@ if (config.isDev) {
     }
   }
 } else {
-  corsOptions.origin = config.corsOrigin
+  // Production: only allow explicitly configured origin(s).
+  // CORS_ORIGIN may be a single URL or a comma-separated list (e.g. prod + preview).
+  const allowedOrigins = config.corsOrigin
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean)
+
+  corsOptions.origin = function (origin, callback) {
+    // Allow same-origin / server-to-server requests with no Origin header.
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.includes(origin)) return callback(null, true)
+    callback(new Error('Not allowed by CORS'))
+  }
 }
 
 app.use(cors(corsOptions))
 
-// Body parsing
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// Body parsing with explicit size limits to mitigate large-payload DoS.
+app.use(express.json({ limit: '100kb' }))
+app.use(express.urlencoded({ extended: true, limit: '100kb' }))
+
+// ============================================
+// RATE LIMITING
+// ============================================
+
+// Global limiter: protects every endpoint from abuse / brute force.
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' },
+})
+
+// Stricter limiter for authentication endpoints (login/register/refresh/password).
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: true, // only failed attempts count toward the limit
+  message: { error: 'Too many authentication attempts, please try again later.' },
+})
+
+app.use(globalLimiter)
 
 // ============================================
 // ROUTES
@@ -60,8 +121,8 @@ app.get('/health', (req, res) => {
 })
 
 // API routes
-app.use('/api/auth', authRoutes)
-app.use('/api/password', passwordRoutes)
+app.use('/api/auth', authLimiter, authRoutes)
+app.use('/api/password', authLimiter, passwordRoutes)
 app.use('/api/databases', databaseRoutes)
 app.use('/api/access-requests', accessRequestRoutes)
 app.use('/api/dashboard', dashboardRoutes)

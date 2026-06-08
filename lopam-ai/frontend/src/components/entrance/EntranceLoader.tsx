@@ -29,27 +29,30 @@ export function EntranceLoader({ children }: EntranceLoaderProps) {
     // Animate progress
     let currentProgress = 0
 
+    // Same visual sequence as before, just without the long artificial padding
+    // that made the first paint feel like the page was hung. Progress fills
+    // faster (120ms steps), then a short hold + reveal.
     const progressInterval = setInterval(() => {
-      currentProgress += Math.random() * 15 + 5
+      currentProgress += Math.random() * 18 + 8
       if (currentProgress >= 95) {
         currentProgress = 95
         clearInterval(progressInterval)
 
-        // Complete progress after delay
+        // Complete progress after a short hold
         setTimeout(() => {
           setProgress(100)
           setIsRevealing(true)
 
-          // Hide loader after reveal animation
+          // Hide loader after the reveal animation
           setTimeout(() => {
             setShowLoader(false)
             sessionStorage.setItem('entrance-loader-shown', 'true')
-          }, 2000)
-        }, 800)
+          }, 700)
+        }, 300)
       } else {
         setProgress(currentProgress)
       }
-    }, 300)
+    }, 120)
 
     return () => clearInterval(progressInterval)
   }, [])

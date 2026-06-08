@@ -70,8 +70,9 @@ export async function logout(): Promise<void> {
     })
   } finally {
     removeTokens()
+    clearCurrentUser()
     if (typeof window !== 'undefined') {
-      window.location.href = '/auth/login'
+      window.location.href = '/auth'
     }
   }
 }

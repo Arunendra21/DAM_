@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '@/lib/motion/variants'
 
 export function Contact() {
@@ -33,7 +33,7 @@ export function Contact() {
 
   try {
     const response = await fetch(
-      'https://formsubmit.co/5fdc867e4777e8959b14fbdcf0e8b598',
+      'https://formsubmit.co/ajax/5fdc867e4777e8959b14fbdcf0e8b598',
       {
         method: 'POST',
         headers: {
@@ -90,13 +90,13 @@ export function Contact() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-bold text-slate-900 dark:text-white mb-1">Email</h3>
-                    <a href="mailto:hello@lopam.ai" className="text-slate-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors font-semibold break-all">
-                      hello@lopam.ai
+                    <a href="mailto:amberm@dciphers.com" className="text-slate-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors font-semibold break-all">
+                      amberm@dciphers.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-colors">
+                {/* <div className="flex items-start gap-4 p-4 rounded-lg bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-colors">
                   <div className="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0">
                     <Phone className="text-primary" size={24} />
                   </div>
@@ -106,7 +106,7 @@ export function Contact() {
                       +1 (800) LOPAM&apos;AI
                     </a>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-4 p-4 rounded-lg bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-colors">
                   <div className="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0">
@@ -114,8 +114,8 @@ export function Contact() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-bold text-slate-900 dark:text-white mb-1">Office</h3>
-                    <p className="text-slate-700 dark:text-gray-200 font-semibold">San Francisco, CA 94105</p>
-                    <p className="text-slate-700 dark:text-gray-200 font-semibold">United States</p>
+                    <p className="text-slate-700 dark:text-gray-200 font-semibold">A/26-27, G.F., Logix Technova,</p>
+                    <p className="text-slate-700 dark:text-gray-200 font-semibold">Sector-132, Noida-201304, U.P., India</p>
                   </div>
                 </div>
               </div>

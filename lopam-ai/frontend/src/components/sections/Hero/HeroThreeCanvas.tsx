@@ -74,8 +74,15 @@ export function HeroThreeCanvas() {
 
     // Animation loop
     let animationFrameId: number
+    let active = false
+    // Visibility gating: only run the simulation while the canvas is on-screen
+    // and the tab is foregrounded. Freezing the drift while hidden is visually
+    // identical on return but removes all off-screen CPU/GPU cost (TBT/main-thread).
+    let inViewport = true
+    let pageVisible = typeof document === 'undefined' || !document.hidden
 
     const animate = () => {
+      if (!active) return
       animationFrameId = requestAnimationFrame(animate)
 
       // Update particles
@@ -110,7 +117,40 @@ export function HeroThreeCanvas() {
       renderer.render(scene, camera)
     }
 
-    animate()
+    const start = () => {
+      if (active) return
+      active = true
+      animate()
+    }
+    const stop = () => {
+      active = false
+      cancelAnimationFrame(animationFrameId)
+    }
+    // Re-evaluate whether the loop should run based on viewport + tab visibility.
+    const syncRunState = () => {
+      if (inViewport && pageVisible) start()
+      else stop()
+    }
+
+    start()
+
+    // Pause when the canvas scrolls out of view.
+    const container = containerRef.current
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry.isIntersecting
+        syncRunState()
+      },
+      { threshold: 0 }
+    )
+    if (container) observer.observe(container)
+
+    // Pause when the tab is backgrounded.
+    const handleVisibility = () => {
+      pageVisible = !document.hidden
+      syncRunState()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
 
     // Handle resize
     const handleResize = () => {
@@ -121,11 +161,11 @@ export function HeroThreeCanvas() {
 
     window.addEventListener('resize', handleResize)
 
-    const container = containerRef.current
-
     return () => {
+      stop()
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', handleVisibility)
       window.removeEventListener('resize', handleResize)
-      cancelAnimationFrame(animationFrameId)
       renderer.dispose()
       geometry.dispose()
       material.dispose()

@@ -46,11 +46,11 @@ export class DatabaseService {
     if (database.createdById !== userId) {
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        include: { roles: { include: { role: true } } },
+        include: { userRoles: { include: { role: true } } },
       })
 
-      const roles = user.roles.map(ur => ur.role.name)
-      if (!['SUPER_ADMIN', 'DBA'].includes(roles[0])) {
+      const roles = user.userRoles.map(ur => ur.role.name)
+      if (!roles.some(r => ['SUPER_ADMIN', 'DBA'].includes(r))) {
         throw new AuthorizationError()
       }
     }
@@ -89,11 +89,11 @@ export class DatabaseService {
     // Check authorization
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      include: { roles: { include: { role: true } } },
+      include: { userRoles: { include: { role: true } } },
     })
 
-    const roles = user.roles.map(ur => ur.role.name)
-    if (!['SUPER_ADMIN', 'DBA'].includes(roles[0]) && database.createdById !== userId) {
+    const roles = user.userRoles.map(ur => ur.role.name)
+    if (!roles.some(r => ['SUPER_ADMIN', 'DBA'].includes(r)) && database.createdById !== userId) {
       throw new AuthorizationError()
     }
 
