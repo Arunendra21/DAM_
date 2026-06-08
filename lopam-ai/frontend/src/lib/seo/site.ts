@@ -12,11 +12,11 @@ const rawSiteUrl =
 export const siteUrl = rawSiteUrl.replace(/\/$/, '')
 
 export const siteConfig = {
-  name: 'Lopam AI',
-  shortName: 'Lopam AI',
-  title: 'Lopam AI — Enterprise Database Security & Activity Monitoring',
+  name: 'Lopam DAM',
+  shortName: 'Lopam DAM',
+  title: 'Lopam DAM — Enterprise Database Security & Activity Monitoring',
   description:
-    'Lopam AI is an enterprise Database Activity Monitoring (DAM) and access management platform. Get real-time monitoring, RBAC access control, AI-powered threat detection, and automated compliance for PCI-DSS, SOX, GDPR, HIPAA and ISO 27001.',
+    'Lopam DAM is an enterprise Database Activity Monitoring (DAM) and access management platform. Get real-time monitoring, RBAC access control, AI-powered threat detection, and automated compliance for PCI-DSS, SOX, GDPR, HIPAA and ISO 27001.',
   url: siteUrl,
   ogImage: `${siteUrl}/og-image.png`,
   locale: 'en_US',

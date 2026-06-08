@@ -4,12 +4,12 @@ import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Careers at Lopam AI - Join Our Team',
+  title: 'Careers at Lopam DAM - Join Our Team',
   description:
-    'Build the future of database security. View open positions at Lopam AI and apply to join our team.',
+    'Build the future of database security. View open positions at Lopam DAM and apply to join our team.',
   keywords: ['careers', 'jobs', 'hiring', 'team'],
   openGraph: {
-    title: 'Careers - Lopam AI',
+    title: 'Careers - Lopam DAM',
     description: 'Join our team',
     url: 'https://lopam-ai.com/company/careers',
   },
@@ -60,7 +60,7 @@ export default function CareersPage() {
       location: 'San Francisco, CA',
       type: 'Full-time',
       description:
-        'Help enterprise customers implement Lopam AI. Technical background and communication skills essential.',
+        'Help enterprise customers implement Lopam DAM. Technical background and communication skills essential.',
     },
     {
       id: 6,
@@ -93,7 +93,7 @@ export default function CareersPage() {
         <section className="section-container">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
-              Why Join Lopam AI?
+              Why Join Lopam DAM?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

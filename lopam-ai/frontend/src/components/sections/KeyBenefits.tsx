@@ -41,7 +41,7 @@ export function KeyBenefits() {
     <section className="section-container bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto">
         <div className="section-header">
-          <h2 className="section-title">Why Enterprises Choose Lopam AI</h2>
+          <h2 className="section-title">Why Enterprises Choose Lopam DAM</h2>
           <p className="section-subtitle">
             Six key benefits that make us the leading database security platform
           </p>
@@ -74,6 +74,7 @@ export function KeyBenefits() {
           ))}
         </motion.div>
 
+        {/* By the Numbers section — commented out
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,6 +103,7 @@ export function KeyBenefits() {
             ))}
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   )

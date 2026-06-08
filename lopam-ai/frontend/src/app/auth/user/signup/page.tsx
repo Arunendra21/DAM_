@@ -81,7 +81,7 @@ export default function UserSignup() {
           animate={{ opacity: 1 }}
         >
           <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
-            Lopam AI
+            Lopam DAM
           </h1>
           <p className="text-xs text-gray-400 mt-1">User Portal</p>
         </motion.div>

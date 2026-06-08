@@ -79,7 +79,7 @@ export function Contact() {
             <div className="relative p-8 lg:p-12 rounded-2xl">
               <h2 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">Get In Touch</h2>
               <p className="text-slate-700 dark:text-gray-200 mb-8 text-lg font-semibold">
-                Have questions about Lopam AI? Our team is here to help. Reach out and we&apos;ll get back to you as soon as
+                Have questions about Lopam DAM? Our team is here to help. Reach out and we&apos;ll get back to you as soon as
                 possible.
               </p>
 

@@ -82,7 +82,7 @@ export const featureDetails = {
   'database-monitoring': {
     title: 'Real-time Database Monitoring',
     description: 'Monitor all database activities with comprehensive query analysis and performance insights.',
-    longDescription: `Lopam AI provides real-time monitoring of all database activities. Track every query, transaction, and operation with millisecond precision. Get detailed insights into:
+    longDescription: `Lopam DAM provides real-time monitoring of all database activities. Track every query, transaction, and operation with millisecond precision. Get detailed insights into:
 
 - Query performance and execution plans
 - Resource utilization and bottlenecks

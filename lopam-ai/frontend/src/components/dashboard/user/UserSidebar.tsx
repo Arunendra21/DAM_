@@ -81,7 +81,7 @@ export function UserSidebar({ open, setOpen }: UserSidebarProps) {
                 <Sparkles className="w-6 h-6 text-slate-900" />
               </motion.div>
               <div className="overflow-hidden">
-                <h1 className="text-lg font-bold text-white leading-tight">Lopam AI</h1>
+                <h1 className="text-lg font-bold text-white leading-tight">Lopam DAM</h1>
                 <p className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
                   User Portal
                 </p>

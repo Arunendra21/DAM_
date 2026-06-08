@@ -3,8 +3,8 @@ import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - Lopam AI',
-  description: 'Privacy policy for Lopam AI database security platform.',
+  title: 'Privacy Policy - Lopam DAM',
+  description: 'Privacy policy for Lopam DAM database security platform.',
   robots: 'noindex, nofollow',
 }
 
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
                 1. Introduction
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                Lopam AI (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) operates the Lopam AI website and platform. This Privacy Policy explains how we collect, use, disclose, and otherwise handle your information when you visit our website, use our services, or communicate with us.
+                Lopam DAM (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) operates the Lopam DAM website and platform. This Privacy Policy explains how we collect, use, disclose, and otherwise handle your information when you visit our website, use our services, or communicate with us.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">

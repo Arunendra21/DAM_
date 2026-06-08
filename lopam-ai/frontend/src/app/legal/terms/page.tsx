@@ -3,8 +3,8 @@ import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - Lopam AI',
-  description: 'Terms of service for Lopam AI database security platform.',
+  title: 'Terms of Service - Lopam DAM',
+  description: 'Terms of service for Lopam DAM database security platform.',
   robots: 'noindex, nofollow',
 }
 
@@ -28,7 +28,7 @@ export default function TermsPage() {
                 1. Agreement to Terms
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                These Terms of Service (&quot;Terms&quot;) constitute a legal agreement between you and Lopam AI (&quot;Company&quot;) regarding your use of our website, services, and products. By accessing or using Lopam AI, you agree to be bound by these Terms.
+                These Terms of Service (&quot;Terms&quot;) constitute a legal agreement between you and Lopam DAM (&quot;Company&quot;) regarding your use of our website, services, and products. By accessing or using Lopam DAM, you agree to be bound by these Terms.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
@@ -56,21 +56,21 @@ export default function TermsPage() {
                 4. Data Security and Compliance
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                Lopam AI implements security measures designed to protect your data. However, no system is completely secure. You acknowledge that transmission of data is at your own risk. We maintain compliance with major security standards including PCI-DSS, HIPAA, GDPR, and other regulatory frameworks.
+                Lopam DAM implements security measures designed to protect your data. However, no system is completely secure. You acknowledge that transmission of data is at your own risk. We maintain compliance with major security standards including PCI-DSS, HIPAA, GDPR, and other regulatory frameworks.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
                 5. Intellectual Property
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                All content, features, and functionality of Lopam AI are owned by Lopam AI, its licensors, or other providers. Your use does not grant you ownership of any intellectual property rights.
+                All content, features, and functionality of Lopam DAM are owned by Lopam DAM, its licensors, or other providers. Your use does not grant you ownership of any intellectual property rights.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
                 6. Limitation of Liability
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                To the maximum extent permitted by law, Lopam AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services, even if we have been advised of the possibility of such damages.
+                To the maximum extent permitted by law, Lopam DAM shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services, even if we have been advised of the possibility of such damages.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
@@ -84,7 +84,7 @@ export default function TermsPage() {
                 8. Indemnification
               </h2>
               <p className="text-slate-700 dark:text-gray-200 font-medium mb-4 leading-relaxed">
-                You agree to indemnify and hold harmless Lopam AI from any claims, damages, or costs arising from your violation of these Terms or your use of our services.
+                You agree to indemnify and hold harmless Lopam DAM from any claims, damages, or costs arising from your violation of these Terms or your use of our services.
               </p>
 
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">

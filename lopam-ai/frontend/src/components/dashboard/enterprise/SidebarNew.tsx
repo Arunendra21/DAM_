@@ -94,7 +94,7 @@ export function SidebarNew({ open, setOpen }: SidebarProps) {
                 <Sparkles className="w-6 h-6 text-slate-900" />
               </motion.div>
               <div className="overflow-hidden">
-                <h1 className="text-lg font-bold text-white leading-tight">Lopam AI</h1>
+                <h1 className="text-lg font-bold text-white leading-tight">Lopam DAM</h1>
                 <p className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
                   DAM Platform
                 </p>
@@ -207,7 +207,7 @@ export function SidebarNew({ open, setOpen }: SidebarProps) {
           </motion.div>
 
           <div className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            <p>© 2026 Lopam AI</p>
+            <p>© 2026 Lopam DAM</p>
             <p>Database Access Management</p>
           </div>
         </motion.div>

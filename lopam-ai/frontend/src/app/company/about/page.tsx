@@ -4,12 +4,12 @@ import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Lopam AI - Our Mission & Vision',
+  title: 'About Lopam DAM - Our Mission & Vision',
   description:
-    'Learn about Lopam AI mission to secure enterprise databases globally. Meet our team of security experts.',
+    'Learn about Lopam DAM mission to secure enterprise databases globally. Meet our team of security experts.',
   keywords: ['about', 'team', 'mission', 'vision'],
   openGraph: {
-    title: 'About Lopam AI',
+    title: 'About Lopam DAM',
     description: 'Our mission to secure enterprise databases',
     url: 'https://lopam-ai.com/company/about',
   },
@@ -27,7 +27,7 @@ export default function AboutPage() {
               Securing Enterprise Databases Globally
             </h1>
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              Lopam AI was founded to solve a critical problem: enterprises need real-time visibility and control over their most sensitive databases.
+              Lopam DAM was founded to solve a critical problem: enterprises need real-time visibility and control over their most sensitive databases.
             </p>
           </div>
         </section>
@@ -61,7 +61,7 @@ export default function AboutPage() {
         <section className="section-container bg-gradient-to-b from-transparent via-primary/5 to-transparent dark:via-primary/10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-              Why We Started Lopam AI
+              Why We Started Lopam DAM
             </h2>
 
             <div className="space-y-6">
@@ -177,7 +177,7 @@ export default function AboutPage() {
               Join Us in Our Mission
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              Whether you&apos;re interested in using Lopam AI or joining our team, we&apos;d love to talk.
+              Whether you&apos;re interested in using Lopam DAM or joining our team, we&apos;d love to talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/demo">

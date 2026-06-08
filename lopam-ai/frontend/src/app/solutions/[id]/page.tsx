@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 
   return {
-    title: `${solution.name} Solution - Lopam AI`,
+    title: `${solution.name} Solution - Lopam DAM`,
     description: solution.description,
     openGraph: {
-      title: `${solution.name} - Lopam AI`,
+      title: `${solution.name} - Lopam DAM`,
       description: solution.description,
       url: `https://lopam-ai.com/solutions/${params.id}`,
     },

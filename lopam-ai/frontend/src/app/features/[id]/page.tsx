@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 
   return {
-    title: `${feature.title} - Lopam AI`,
+    title: `${feature.title} - Lopam DAM`,
     description: feature.description,
     openGraph: {
-      title: `${feature.title} - Lopam AI`,
+      title: `${feature.title} - Lopam DAM`,
       description: feature.description,
       url: `https://lopam-ai.com/features/${params.id}`,
     },

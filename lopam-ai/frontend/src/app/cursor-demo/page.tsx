@@ -4,7 +4,7 @@ import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Custom Cursor Demo - Lopam AI',
+  title: 'Custom Cursor Demo - Lopam DAM',
   description: 'Experience the premium cybersecurity-themed custom cursor.',
   robots: 'noindex, nofollow',
 }
@@ -245,7 +245,7 @@ export default function CursorDemoPage() {
         <section className="section-container">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-6">
-              Ready to explore the full Lopam AI platform?
+              Ready to explore the full Lopam DAM platform?
             </p>
             <Link href="/">
               <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300">

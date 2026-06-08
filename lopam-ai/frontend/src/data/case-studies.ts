@@ -13,7 +13,7 @@ export const caseStudies = [
 - Track privileged user access
 - Detect suspicious database activities
 - Meet audit requirements efficiently`,
-    solution: `Deployed Lopam AI across all databases to:
+    solution: `Deployed Lopam DAM across all databases to:
 
 - Enable real-time monitoring of all database activities
 - Implement privileged access management
@@ -51,7 +51,7 @@ export const caseStudies = [
 - Patient data security concerns
 - Lack of visibility into database access
 - Audit readiness challenges`,
-    solution: `Implemented Lopam AI's healthcare-specific monitoring:
+    solution: `Implemented Lopam DAM's healthcare-specific monitoring:
 
 - Set up PHI (Protected Health Information) access tracking
 - Enabled session recording for all database access
@@ -90,7 +90,7 @@ export const caseStudies = [
 - Monitoring of classified databases
 - On-premises deployment in air-gapped environment
 - Complex audit requirements`,
-    solution: `Deployed Lopam AI in secure government environment:
+    solution: `Deployed Lopam DAM in secure government environment:
 
 - On-premises deployment on classified network
 - Air-gapped configuration without internet connectivity

@@ -87,11 +87,11 @@ export function PlatformOverview() {
           className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 border border-primary/20 dark:border-primary/10"
         >
           <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
-            Why Choose Lopam AI?
+            Why Choose Lopam DAM?
           </h3>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              'Deployed in 50+ enterprises',
+              // 'Deployed in 50+ enterprises',
               '99.99% uptime SLA',
               'Zero-trust architecture',
               'Multi-cloud support',

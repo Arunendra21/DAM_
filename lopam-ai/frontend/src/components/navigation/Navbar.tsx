@@ -33,7 +33,7 @@ export function Navbar() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
               <span className="text-white font-bold text-lg">L</span>
             </div>
-            <span className="font-bold text-xl hidden sm:inline text-slate-900 dark:text-white">Lopam AI</span>
+            <span className="font-bold text-xl hidden sm:inline text-slate-900 dark:text-white">Lopam DAM</span>
           </motion.div>
 
           {/* Desktop Navigation */}

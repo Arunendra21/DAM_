@@ -75,7 +75,7 @@ export function Sidebar({ open, setOpen }: SidebarProps) {
               <Database className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">Lopam AI</h1>
+              <h1 className="text-lg font-bold text-white">Lopam DAM</h1>
               <p className="text-xs text-gray-400">DAM Platform</p>
             </div>
           </div>
@@ -120,7 +120,7 @@ export function Sidebar({ open, setOpen }: SidebarProps) {
           </div>
 
           <div className="text-xs text-gray-500 text-center">
-            <p>© 2026 Lopam AI</p>
+            <p>© 2026 Lopam DAM</p>
             <p>Database Access Management</p>
           </div>
         </div>

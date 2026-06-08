@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${post.title} - Lopam AI Blog`,
+    title: `${post.title} - Lopam DAM Blog`,
     description: post.excerpt,
     keywords: post.tags,
     openGraph: {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url: `https://lopam-ai.com/resources/blog/${params.slug}`,
       type: 'article',
       publishedTime: post.publishedAt.toISOString(),
-      authors: ['Lopam AI'],
+      authors: ['Lopam DAM'],
     },
   }
 }
@@ -95,10 +95,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="max-w-3xl mx-auto">
             <div className="p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                About Lopam AI
+                About Lopam DAM
               </h3>
               <p className="text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-                Lopam AI is the leading enterprise database security platform, protecting databases with real-time monitoring, threat detection, and compliance automation.
+                Lopam DAM is the leading enterprise database security platform, protecting databases with real-time monitoring, threat detection, and compliance automation.
               </p>
             </div>
           </div>

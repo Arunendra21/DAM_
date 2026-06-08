@@ -5,9 +5,9 @@ import { features } from '@/data/features'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Features - Lopam AI Enterprise Database Security',
+  title: 'Features - Lopam DAM Enterprise Database Security',
   description:
-    'Explore all features of Lopam AI: real-time monitoring, threat detection, compliance automation, access control, and more.',
+    'Explore all features of Lopam DAM: real-time monitoring, threat detection, compliance automation, access control, and more.',
   keywords: [
     'database features',
     'security features',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'compliance',
   ],
   openGraph: {
-    title: 'Features - Lopam AI',
+    title: 'Features - Lopam DAM',
     description: 'Enterprise database security features',
     url: 'https://lopam-ai.com/features',
   },
@@ -127,7 +127,7 @@ export default function FeaturesPage() {
               Ready to Secure Your Databases?
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              Experience enterprise-grade database security with Lopam AI. Start your free trial or schedule a demo.
+              Experience enterprise-grade database security with Lopam DAM. Start your free trial or schedule a demo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300">

@@ -15,7 +15,7 @@ import { SupportedDatabases } from '@/components/sections/SupportedDatabases'
 import { SolutionsPreview } from '@/components/sections/SolutionsPreview'
 
 export const metadata: Metadata = {
-  title: 'Lopam AI - Enterprise Database Access Management Platform',
+  title: 'Lopam DAM - Enterprise Database Access Management Platform',
   description:
     'Real-time database monitoring, threat detection, and compliance automation for enterprise security. Protect your databases with AI-powered threat detection.',
   keywords: [
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
   // layout. The OG/Twitter image is the real generated app/opengraph-image.tsx
   // (the previous static /og-image.jpg did not exist and returned 404).
   openGraph: {
-    title: 'Lopam AI - Enterprise Database Security',
+    title: 'Lopam DAM - Enterprise Database Security',
     description: 'Real-time database monitoring and threat detection for enterprises',
     url: '/',
-    siteName: 'Lopam AI',
+    siteName: 'Lopam DAM',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lopam AI - Enterprise Database Security',
+    title: 'Lopam DAM - Enterprise Database Security',
     description: 'Real-time database monitoring and threat detection',
   },
 }

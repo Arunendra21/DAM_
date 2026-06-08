@@ -62,7 +62,7 @@ export default function AdminLogin() {
           animate={{ opacity: 1 }}
         >
           <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-            Lopam AI
+            Lopam DAM
           </h1>
           <p className="text-xs text-gray-400 mt-1">Admin Portal</p>
         </motion.div>

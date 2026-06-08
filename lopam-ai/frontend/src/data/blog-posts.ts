@@ -18,9 +18,9 @@ PCI-DSS 4.0 introduces stricter requirements for database monitoring and activit
 4. **Query Logging**: Log all database queries and modifications
 5. **Alert System**: Implement automated alerting for suspicious activities
 
-## Implementation with Lopam AI
+## Implementation with Lopam DAM
 
-Lopam AI helps meet these requirements by:
+Lopam DAM helps meet these requirements by:
 - Providing real-time database activity monitoring
 - Maintaining comprehensive audit logs
 - Automating compliance reporting
@@ -61,7 +61,7 @@ SQL injection attacks occur when malicious SQL code is injected into input field
 - Monitor database activities
 - Regular security testing
 
-Lopam AI detects SQL injection attempts automatically and alerts your security team.`,
+Lopam DAM detects SQL injection attempts automatically and alerts your security team.`,
     publishedAt: new Date('2024-02-10'),
     createdAt: new Date('2024-02-10'),
     viewCount: 2150,
@@ -94,7 +94,7 @@ Zero trust security principles applied to database access provide maximum protec
 4. Monitor all activities
 5. Regular access reviews
 
-Lopam AI enables zero trust database access with privileged access management and behavioral analytics.`,
+Lopam DAM enables zero trust database access with privileged access management and behavioral analytics.`,
     publishedAt: new Date('2024-02-25'),
     createdAt: new Date('2024-02-25'),
     viewCount: 1890,
@@ -119,7 +119,7 @@ Healthcare organizations must implement strict controls to protect patient healt
 - Emergency access procedures
 - Risk assessment and management
 
-## Lopam AI for HIPAA Compliance
+## Lopam DAM for HIPAA Compliance
 
 Our platform provides:
 - PHI access monitoring
@@ -161,7 +161,7 @@ Insider threats are a growing concern. User behavior analytics can detect anomal
 - Failed access attempts
 - Privilege escalations
 
-Lopam AI's behavioral analytics detect insider threats in real-time.`,
+Lopam DAM's behavioral analytics detect insider threats in real-time.`,
     publishedAt: new Date('2024-03-15'),
     createdAt: new Date('2024-03-15'),
     viewCount: 2340,

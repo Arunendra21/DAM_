@@ -30,6 +30,12 @@ const frameworks = [
     compliance: 97,
     controls: ['Card Data Security', 'Network Segmentation', 'Monitoring'],
   },
+  {
+    name: 'DPDP',
+    description: 'Digital Personal Data Protection',
+    compliance: 95,
+    controls: ['Consent Management', 'Data Principal Rights', 'Breach Reporting'],
+  },
 ]
 
 export function Compliance() {

@@ -7,9 +7,9 @@ import { GlassCard } from '@/components/ui/Card'
 
 const faqs = [
   {
-    question: 'What databases does Lopam AI support?',
+    question: 'What databases does Lopam DAM support?',
     answer:
-      'Lopam AI supports all major database systems including PostgreSQL, MySQL, Oracle, SQL Server, MongoDB, Cassandra, Snowflake, BigQuery, and more. We continuously expand our database support.',
+      'Lopam DAM supports all major database systems including PostgreSQL, MySQL, Oracle, SQL Server, MongoDB, Cassandra, Snowflake, BigQuery, and more. We continuously expand our database support.',
   },
   {
     question: 'How is data encrypted and stored?',
@@ -24,10 +24,10 @@ const faqs = [
   {
     question: 'Do you offer on-premises deployment?',
     answer:
-      'Yes, Enterprise customers can deploy Lopam AI on-premises or in their private cloud. We also support hybrid deployments combining cloud and on-premises components.',
+      'Yes, Enterprise customers can deploy Lopam DAM on-premises or in their private cloud. We also support hybrid deployments combining cloud and on-premises components.',
   },
   {
-    question: 'How does Lopam AI handle false positives?',
+    question: 'How does Lopam DAM handle false positives?',
     answer:
       'Our AI model is trained on millions of database transactions to minimize false positives. You can customize threat rules and establish baselines for your environment to further reduce false alerts.',
   },
@@ -85,7 +85,7 @@ export function FAQ() {
       <div className="max-w-3xl mx-auto">
         <div className="section-header">
           <h2 className="section-title">Frequently Asked Questions</h2>
-          <p className="section-subtitle">Everything you need to know about Lopam AI</p>
+          <p className="section-subtitle">Everything you need to know about Lopam DAM</p>
         </div>
 
         <div className="space-y-3">

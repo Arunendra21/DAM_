@@ -5,12 +5,12 @@ import { blogPosts, blogPostsByCategory } from '@/data/blog-posts'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Blog - Lopam AI Database Security Insights',
+  title: 'Blog - Lopam DAM Database Security Insights',
   description:
     'Read articles about database security, compliance, threat detection, and best practices for enterprise database protection.',
   keywords: ['blog', 'database security', 'compliance', 'threat detection', 'security best practices'],
   openGraph: {
-    title: 'Blog - Lopam AI',
+    title: 'Blog - Lopam DAM',
     description: 'Database security insights and best practices',
     url: 'https://lopam-ai.com/resources/blog',
   },

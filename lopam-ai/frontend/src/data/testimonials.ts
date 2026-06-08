@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     id: 'testimonial-1',
-    quote: 'Lopam AI transformed our database security posture. The real-time threat detection caught a SQL injection attempt within seconds, something we would have missed with traditional solutions.',
+    quote: 'Lopam DAM transformed our database security posture. The real-time threat detection caught a SQL injection attempt within seconds, something we would have missed with traditional solutions.',
     author: 'Sarah Johnson',
     title: 'Chief Security Officer',
     company: 'Global Financial Services',
@@ -19,7 +19,7 @@ export const testimonials = [
   },
   {
     id: 'testimonial-3',
-    quote: 'Implementing Lopam AI was seamless. The onboarding team made it easy to monitor all our databases within two weeks. The dashboard gives us complete visibility.',
+    quote: 'Implementing Lopam DAM was seamless. The onboarding team made it easy to monitor all our databases within two weeks. The dashboard gives us complete visibility.',
     author: 'Jennifer Martinez',
     title: 'Database Administrator',
     company: 'E-Commerce Platform',
@@ -37,7 +37,7 @@ export const testimonials = [
   },
   {
     id: 'testimonial-5',
-    quote: 'HIPAA compliance was our biggest concern, and Lopam AI made it simple. The automated reports and audit trails give us confidence in our security posture.',
+    quote: 'HIPAA compliance was our biggest concern, and Lopam DAM made it simple. The automated reports and audit trails give us confidence in our security posture.',
     author: 'Lisa Anderson',
     title: 'Privacy Officer',
     company: 'Medical Device Manufacturer',

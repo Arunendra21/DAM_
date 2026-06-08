@@ -68,7 +68,7 @@ export function Hero() {
             </Button>
           </motion.div> */}
 
-          {/* Trust Metric */}
+          {/* Trust Metric — commented out
           <motion.div
             variants={fadeInUp}
             className="mt-12 pt-8 border-t-2 border-slate-300 dark:border-surface-border flex flex-col sm:flex-row justify-center gap-8 text-sm"
@@ -84,6 +84,7 @@ export function Hero() {
               </div>
             ))}
           </motion.div>
+          */}
         </motion.div>
       </div>
     </section>

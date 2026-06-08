@@ -5,12 +5,12 @@ import { solutions } from '@/data/solutions'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Solutions - Lopam AI Industry-Specific Database Security',
+  title: 'Solutions - Lopam DAM Industry-Specific Database Security',
   description:
     'Enterprise database security solutions for Banking, Healthcare, Government, Telecom, and SaaS industries. Compliance-focused platforms.',
   keywords: ['solutions', 'industry', 'compliance', 'database security'],
   openGraph: {
-    title: 'Solutions - Lopam AI',
+    title: 'Solutions - Lopam DAM',
     description: 'Industry-specific database security solutions',
     url: 'https://lopam-ai.com/solutions',
   },
@@ -97,7 +97,7 @@ export default function SolutionsPage() {
         <section className="section-container bg-gradient-to-b from-transparent via-primary/5 to-transparent dark:via-primary/10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
-              Why Lopam AI for Your Industry?
+              Why Lopam DAM for Your Industry?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

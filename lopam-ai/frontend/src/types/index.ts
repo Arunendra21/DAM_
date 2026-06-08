@@ -1,4 +1,4 @@
-// Core Types for Lopam AI Platform
+// Core Types for Lopam DAM Platform
 
 export type UserRole = 'admin' | 'user' | 'viewer'
 export type SubscriptionPlan = 'starter' | 'professional' | 'enterprise' | 'custom'

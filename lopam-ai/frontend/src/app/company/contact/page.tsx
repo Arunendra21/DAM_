@@ -3,12 +3,12 @@ import { Navbar } from '@/components/navigation/Navbar'
 import { Footer } from '@/components/sections/Footer'
 
 export const metadata: Metadata = {
-  title: 'Contact Lopam AI - Sales, Support & Partnerships',
+  title: 'Contact Lopam DAM - Sales, Support & Partnerships',
   description:
     'Get in touch with our team. Contact sales, request a demo, or inquire about partnerships.',
   keywords: ['contact', 'sales', 'support', 'partnerships'],
   openGraph: {
-    title: 'Contact Lopam AI',
+    title: 'Contact Lopam DAM',
     description: 'Get in touch with our team',
     url: 'https://lopam-ai.com/company/contact',
   },
@@ -26,7 +26,7 @@ export default function ContactPage() {
               Get in Touch
             </h1>
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              Have questions about Lopam AI? Our team is ready to help. Contact us for sales inquiries, technical support, or partnership opportunities.
+              Have questions about Lopam DAM? Our team is ready to help. Contact us for sales inquiries, technical support, or partnership opportunities.
             </p>
           </div>
         </section>
@@ -179,7 +179,7 @@ export default function ContactPage() {
               {[
                 {
                   title: 'Request Demo',
-                  description: 'See Lopam AI in action',
+                  description: 'See Lopam DAM in action',
                   link: '/demo',
                 },
                 {

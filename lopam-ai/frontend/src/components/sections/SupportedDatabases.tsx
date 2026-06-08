@@ -1,22 +1,48 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { IconType } from 'react-icons'
+import {
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiMariadb,
+  SiApachecassandra,
+  SiSnowflake,
+  SiGooglebigquery,
+  SiRedis,
+} from 'react-icons/si'
+import { GrOracle } from 'react-icons/gr'
+import { DiMsqlServer } from 'react-icons/di'
+import { FaAws } from 'react-icons/fa'
 import { staggerContainer, staggerItem } from '@/lib/motion/variants'
 
+type DatabaseEntry = {
+  name: string
+  popular: boolean
+  Icon?: IconType
+  color?: string
+  img?: string
+}
+
 export function SupportedDatabases() {
-  const databases = [
-    { name: 'PostgreSQL', icon: '🐘', popular: true },
-    { name: 'MySQL', icon: '🐬', popular: true },
-    { name: 'Oracle Database', icon: '🏢', popular: true },
-    { name: 'SQL Server', icon: '📊', popular: true },
-    { name: 'MongoDB', icon: '🍃', popular: false },
-    { name: 'MariaDB', icon: '🐞', popular: false },
-    { name: 'Cassandra', icon: '⚙️', popular: false },
-    { name: 'DynamoDB', icon: '☁️', popular: false },
-    { name: 'Snowflake', icon: '❄️', popular: false },
-    { name: 'BigQuery', icon: '📈', popular: false },
-    { name: 'Redis', icon: '⚡', popular: false },
-    { name: 'Elasticsearch', icon: '🔍', popular: false },
+  // Each entry uses the technology's official logo (high-quality SVG) in its
+  // brand color. DynamoDB has no dedicated logo in the icon set, so the
+  // official AWS mark is used as its closest authentic representation.
+  // Elasticsearch uses its full-color logo from a local asset.
+  const databases: DatabaseEntry[] = [
+    { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1', popular: true },
+    { name: 'MySQL', Icon: SiMysql, color: '#4479A1', popular: true },
+    { name: 'Oracle Database', Icon: GrOracle, color: '#F80000', popular: true },
+    { name: 'SQL Server', Icon: DiMsqlServer, color: '#CC2927', popular: true },
+    { name: 'MongoDB', Icon: SiMongodb, color: '#47A248', popular: false },
+    { name: 'MariaDB', Icon: SiMariadb, color: '#C0765A', popular: false },
+    { name: 'Cassandra', Icon: SiApachecassandra, color: '#1287B1', popular: false },
+    { name: 'DynamoDB', Icon: FaAws, color: '#FF9900', popular: false },
+    { name: 'Snowflake', Icon: SiSnowflake, color: '#29B5E8', popular: false },
+    { name: 'BigQuery', Icon: SiGooglebigquery, color: '#4285F4', popular: false },
+    { name: 'Redis', Icon: SiRedis, color: '#DC382D', popular: false },
+    { name: 'Elasticsearch', img: '/logos/elasticsearch.png', popular: false },
   ]
 
   return (
@@ -52,7 +78,12 @@ export function SupportedDatabases() {
                 </div>
               )}
               <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {db.icon}
+                {db.img ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={db.img} alt={db.name} width={36} height={36} />
+                ) : (
+                  db.Icon && <db.Icon size={36} color={db.color} aria-label={db.name} />
+                )}
               </div>
               <p className="text-center text-sm md:text-base font-semibold text-slate-900 dark:text-white">
                 {db.name}

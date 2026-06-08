@@ -8,7 +8,7 @@ import { staggerContainer, staggerItem } from '@/lib/motion/variants'
 const testimonials = [
   {
     quote:
-      'Lopam AI has been a game-changer for our security posture. The real-time threat detection caught a breach attempt within minutes.',
+      'Lopam DAM has been a game-changer for our security posture. The real-time threat detection caught a breach attempt within minutes.',
     author: 'Sarah Chen',
     role: 'Chief Security Officer',
     company: 'Fortune 500 Bank',
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     quote:
-      "The dashboard is intuitive and the support team is incredibly responsive. Lopam AI is enterprise-grade security done right.",
+      "The dashboard is intuitive and the support team is incredibly responsive. Lopam DAM is enterprise-grade security done right.",
     author: 'Jennifer Park',
     role: 'VP of Engineering',
     company: 'Tech Giant',
@@ -38,7 +38,7 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto">
         <div className="section-header">
           <h2 className="section-title">Trusted by Enterprise Leaders</h2>
-          <p className="section-subtitle">See what Fortune 500 companies are saying about Lopam AI</p>
+          <p className="section-subtitle">See what Fortune 500 companies are saying about Lopam DAM</p>
         </div>
 
         <motion.div

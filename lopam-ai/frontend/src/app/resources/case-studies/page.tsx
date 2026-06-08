@@ -5,12 +5,12 @@ import { caseStudies, caseStudiesByIndustry } from '@/data/case-studies'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Case Studies - Lopam AI Customer Success Stories',
+  title: 'Case Studies - Lopam DAM Customer Success Stories',
   description:
-    'Read how enterprises across banking, healthcare, and government improved security and compliance with Lopam AI.',
+    'Read how enterprises across banking, healthcare, and government improved security and compliance with Lopam DAM.',
   keywords: ['case studies', 'success stories', 'customer stories', 'database security'],
   openGraph: {
-    title: 'Case Studies - Lopam AI',
+    title: 'Case Studies - Lopam DAM',
     description: 'Enterprise customer success stories',
     url: 'https://lopam-ai.com/resources/case-studies',
   },
@@ -30,7 +30,7 @@ export default function CaseStudiesPage() {
               Customer Success Stories
             </h1>
             <p className="text-xl text-slate-700 dark:text-gray-200 font-medium leading-relaxed">
-              See how enterprises across banking, healthcare, and government improved security and compliance with Lopam AI.
+              See how enterprises across banking, healthcare, and government improved security and compliance with Lopam DAM.
             </p>
           </div>
         </section>
@@ -166,7 +166,7 @@ export default function CaseStudiesPage() {
               Ready to Write Your Success Story?
             </h2>
             <p className="text-slate-700 dark:text-gray-200 font-medium mb-8 text-lg">
-              Join hundreds of enterprises protecting their databases with Lopam AI.
+              Join hundreds of enterprises protecting their databases with Lopam DAM.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300">
